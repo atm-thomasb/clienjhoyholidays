@@ -1,0 +1,96 @@
+= CLIENJOYHOLIDAYS =
+:subtitle: CLIENJOYHOLIDAYS DOCUMENTATION
+:source-highlighter: rouge
+:companyname: ATM Consulting
+:corpname: ATM Consulting
+:orgname: ATM Consulting
+:creator: SuperAdmin
+:title: Documentation of module CliEnjoyHolidays
+:subject: This document is the document of module CliEnjoyHolidays.
+:keywords: CliEnjoyHolidays
+// Date du document :
+:docdate: 2024-07-26
+:toc: manual
+:toc-placement: preamble
+
+
+== TOPIC OF DOCUMENT
+
+This is the documentation of module CliEnjoyHolidays
+
+
+*Log of versions of document*
+
+[options="header",format="csv"]
+|=== 
+Author, Date, Version
+--- SuperAdmin   ---, 2024-07-26, Version 1.0
+|===
+
+
+[NOTE]
+==============
+This document was generated using Dolibarr ERP CRM process
+==============
+
+
+:toc: manual
+:toc-placement: preamble
+
+
+
+== INTRODUCTION
+
+//include::README.md[]
+__README__
+
+== DATA SPECIFICATIONS
+=== Table of fields with properties for object *FormuledeVoyage* : 
+[options='header',grid=rows,frame=topbot,width=100%,caption=Organisation]
+|===
+|code|type|label|enabled|position|notnull|visible|noteditable|index|default|foreignkey|arrayofkeyval|alwayseditable|validate|searchall|comment|isameasure|css|cssview|csslist|help|showoncombobox|picto
+|*"rowid"*||||1|1|||||||||||||||||
+|*"ref"*||||20|1|||||||||||||||||
+|*label*|varchar(255)|||30|0|||||||||||||||||
+|*"cost"*||||40|0|||||||||||||||||
+|*"destination"*||||45|0|||||||||||||||||
+|*"date_departure"*||||500|1|||||||||||||||||
+|*"dateroundtrip"*||||50|0|||||||||||||||||
+|*"transportmode"*||||60|0|||||||||||||||||
+|===
+__ end table for object FormuledeVoyage
+
+
+__DATA_SPECIFICATION__
+
+
+== MATRIX OF PERMISSIONS
+
+[options='header',grid=rows,width=60%,caption=Organisation]
+|===
+|Objects|Permission
+|*Read objects of CliEnjoyHolidays*| 1 , 
+|*// In php code, permission will be checked by test if ($user->hasRight('clienjoyholidays',formuledevoyage',read'))
+		1*|formuledevoyage , 
+|*formuledevoyage*|Create/Update objects of CliEnjoyHolidays , 
+|*Delete objects of CliEnjoyHolidays*|// In php code, permission will be checked by test if ($user->hasRight('clienjoyholidays',formuledevoyage',write'))
+		1 , 
+|*// In php code, permission will be checked by test if ($user->hasRight('clienjoyholidays',formuledevoyage',delete'))
+		1*|formuledevoyage , 
+
+|===
+
+
+
+== OTHER
+
+__API_DOC__
+
+
+== CHANGELOG
+
+
+# CHANGELOG CLIENJOYHOLIDAYS FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
+ 1.0
+Initial version
+
