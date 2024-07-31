@@ -302,7 +302,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 		$this->rights[$r][4] = 'formuledevoyage';
 		$this->rights[$r][5] = 'delete';
 		$r++;
-		
+
 		/* END MODULEBUILDER PERMISSIONS */
 
 		// Main menu entries to add
@@ -336,7 +336,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 			 'leftmenu' => 'formuledevoyage',
 			 'url' => '/clienjoyholidays/formuledevoyage_list.php',
 			 'langs' => 'clienjoyholidays@clienjoyholidays',
-			 'position' => 1000,
+			 'position' => 1000 + $r,
 			 'enabled' => 'isModEnabled(\'clienjoyholidays\')',
 			 'perms' => '$user->hasRight(\'clienjoyholidays\', \'formuledevoyage\', \'read\')',
 			 'target' => '',
@@ -352,7 +352,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 			 'leftmenu' => 'clienjoyholidays_formuledevoyage_list',
 			 'url' => '/clienjoyholidays/formuledevoyage_list.php',
 			 'langs' => 'clienjoyholidays@clienjoyholidays',
-			 'position' => 1000,
+			'position' => 1000 + $r,
 			 'enabled' => 'isModEnabled(\'clienjoyholidays\')',
 			 'perms' => '$user->hasRight(\'clienjoyholidays\', \'formuledevoyage\', \'read\')',
 			 'target' => '',
@@ -368,8 +368,8 @@ class modCliEnjoyHolidays extends DolibarrModules
 			 'leftmenu' => 'clienjoyholidays_formuledevoyage_new',
 			 'url' => '/clienjoyholidays/formuledevoyage_card.php?action=create',
 			 'langs' => 'clienjoyholidays@clienjoyholidays',
-			 'position' => 1000,
-			 'enabled' => 'isModEnabled(\'clienjoyholidays\')',
+			'position' => 1000 + $r,
+ 			 'enabled' => 'isModEnabled(\'clienjoyholidays\')',
 			 'perms' => '$user->hasRight(\'clienjoyholidays\', \'formuledevoyage\', \'write\')',
 			 'target' => '',
 			 'user' => 2,
