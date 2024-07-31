@@ -21,24 +21,35 @@
 ModuleMyModuleName = MyModule
 # Module description 'ModuleMyModuleDesc'
 ModuleMyModuleDesc = Projet integration ThomasB
+CopyOfEnjoy = Copie_De_
+Cost = Coût
+Destination = Destination
+DateDeparture = Date Départ
+DateRoundTrip = Date Arrivée
+TransportMode = Mode de Transport
+
 #
 # Admin page
 #
-MyModuleSetup = MyModule setup
-Settings = Settings
-MyModuleSetupPage = MyModule setup page
-MYMODULE_MYPARAM1 = My param 1
-MYMODULE_MYPARAM1Tooltip = My param 1 tooltip
-MYMODULE_MYPARAM2=My param 2
-MYMODULE_MYPARAM2Tooltip=My param 2 tooltip
-
+ReadCliEnjoyHolidays = Lire l'objet FormuledeVoyage de CliEnjoyHolidays
+CreateUpdateCliEnjoyHolidays = Créer/Mettre à jour l'objet FormuledeVoyage de CliEnjoyHolidays
+DeleteCliEnjoyHolidays = Supprimer l'objet FormuledeVoyage de CliEnjoyHolidays
 
 #
 # About page
 #
-About = About
-MyModuleAbout = About MyModule
-MyModuleAboutPage = MyModule about page
+About = A propos
+CliEnjoyHolidaysAbout = A propos de CliEnjoyHolidays
+CliEnjoyHolidaysAboutPage = Page A propos de CliEnjoyHolidays
+
+#
+# Card page
+#
+MyPageName = Formulaire
+ErrorShortLabel = Erreur, libellé trop court
+FormuledeVoyage = Formule de Voyage
+NewObjectFormuledeVoyage = Nouvelle %s
+DeleteFormuledeVoyage = Supprimer Formule de Voyage
 
 #
 # Sample page
@@ -47,7 +58,15 @@ MyModuleArea = Home MyModule
 MyPageName = My page name
 
 #
-# Sample widget
+# Left Menu
 #
-MyWidget = My widget
-MyWidgetDescription = My widget description
+ListFormuledeVoyage = Lister Formule de Voyage
+NewFormuledeVoyage = Nouvelle Formule de Voyage
+
+
+#
+# Enjoyholidays widget
+#
+MyWidget = Enjoy Holidays Widget
+MyWidgetDescription = A neat widget for your holidays
+BoxTitleEnjoyHolidays = AAAAAAAAAAAAAAAAAAAAAAAAAH

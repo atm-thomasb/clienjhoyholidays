@@ -21,17 +21,19 @@
 ModuleCliEnjoyHolidaysName = CliEnjoyHolidays
 # Module description 'ModuleCliEnjoyHolidaysDesc'
 ModuleCliEnjoyHolidaysDesc = Projet integration ThomasB
+CopyOfEnjoy = Copy_Of_
+Cost = Cost
+Destination = Destination
+DateDeparture = Date Departure
+DateRoundTrip = Date Round Trip
+TransportMode = transport Mode
 
 #
 # Admin page
 #
-CliEnjoyHolidaysSetup = CliEnjoyHolidays setup
-Settings = Settings
-CliEnjoyHolidaysSetupPage = CliEnjoyHolidays setup page
-CLIENJOYHOLIDAYS_MYPARAM1 = My param 1
-CLIENJOYHOLIDAYS_MYPARAM1Tooltip = My param 1 tooltip
-CLIENJOYHOLIDAYS_MYPARAM2=My param 2
-CLIENJOYHOLIDAYS_MYPARAM2Tooltip=My param 2 tooltip
+ReadCliEnjoyHolidays = Read the FormuledeVoyage object of CliEnjoyHolidays
+CreateUpdateCliEnjoyHolidays = Create/Update the FormuledeVoyage object of CliEnjoyHolidays
+DeleteCliEnjoyHolidays = Delete the FormuledeVoyage object of CliEnjoyHolidays
 
 
 #
@@ -42,13 +44,30 @@ CliEnjoyHolidaysAbout = About CliEnjoyHolidays
 CliEnjoyHolidaysAboutPage = CliEnjoyHolidays about page
 
 #
+# Card page
+#
+MyPageName = Card page
+ErrorShortLabel = Error, label too short
+FormuledeVoyage = Trip Sheet
+NewObjectFormuledeVoyage = New %s
+DeleteFormuledeVoyage = Delete TripSheet
+
+
+#
 # Sample page
 #
 CliEnjoyHolidaysArea = Home CliEnjoyHolidays
 MyPageName = My page name
 
 #
-# Sample widget
+# Left Menu
 #
-MyWidget = My widget
-MyWidgetDescription = My widget description
+ListFormuledeVoyage = List TripSheet
+NewFormuledeVoyage = New TripSheet
+
+#
+# Enjoyholidays widget
+#
+MyWidget = Enjoy Holidays Widget
+MyWidgetDescription = A neat widget for your holidays
+BoxTitleEnjoyHolidays = AAAAAAAAAAAAAAAAAAAAAAAAAH

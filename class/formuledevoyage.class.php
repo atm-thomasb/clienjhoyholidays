@@ -115,12 +115,25 @@ class FormuledeVoyage extends CommonObject
 	public $fields=array(
 		"rowid" => array("type"=>"integer", "label"=>"TechnicalID", "enabled"=>"1", 'position'=>1, 'notnull'=>1, "visible"=>"0", "noteditable"=>"1", "index"=>"1", "css"=>"left", "comment"=>"Id"),
 		"ref" => array("type"=>"varchar(128)", "label"=>"Ref", "enabled"=>"1", 'position'=>20, 'notnull'=>1, "visible"=>"1", "index"=>"1", "searchall"=>"1", "showoncombobox"=>"1", "validate"=>"1", "comment"=>"Reference of object"),
-		"label" => array("type"=>"varchar(255)", "label"=>"Label", "enabled"=>"1", 'position'=>30, 'notnull'=>0, "visible"=>"1", "alwayseditable"=>"1", "searchall"=>"1", "css"=>"minwidth300", "cssview"=>"wordbreak", "help"=>"Help text", "showoncombobox"=>"2", "validate"=>"1", "Required"=>"1",),
+		"label" => array("type"=>"varchar(255)", "label"=>"Label", "enabled"=>"1", 'position'=>30, 'notnull'=>1, "visible"=>"1", "alwayseditable"=>"1", "searchall"=>"1", "css"=>"minwidth300", "cssview"=>"wordbreak", "help"=>"Help text", "showoncombobox"=>"2", "validate"=>"1",),
 		"cost" => array("type"=>"price", "label"=>"Cost", "enabled"=>"1", 'position'=>40, 'notnull'=>0, "visible"=>"1", "alwayseditable"=>"1", "searchall"=>"1", "css"=>"minwidth300", "cssview"=>"wordbreak", "showoncombobox"=>"2", "validate"=>"1",),
-		"destination" => array("type"=>"varchar(128)", "label"=>"Destination", "enabled"=>"1", 'position'=>45, 'notnull'=>0, "visible"=>"1",),
-		"date_departure" => array("type"=>"datetime", "label"=>"Date Departure", "enabled"=>"1", 'position'=>500, 'notnull'=>1, "visible"=>"-2",),
-		"dateroundtrip" => array("type"=>"datetime", "label"=>"Date Round Trip", "enabled"=>"1", 'position'=>50, 'notnull'=>0, "visible"=>"1",),
-		"transportmode" => array("type"=>"dictionary", "label"=>"Transport Mode", "enabled"=>"1", 'position'=>60, 'notnull'=>0, "visible"=>"1",),
+		"destination" => array("type"=>"varchar(128)", "label"=>"Destination", "enabled"=>"1", 'position'=>45, 'notnull'=>1, "visible"=>"1",),
+		"date_departure" => array("type"=>"datetime", "label"=>"DateDeparture", "enabled"=>"1", 'position'=>48, 'notnull'=>0, "visible"=>"1",),
+		"dateroundtrip" => array("type"=>"datetime", "label"=>"DateRoundTrip", "enabled"=>"1", 'position'=>49, 'notnull'=>0, "visible"=>"1",),
+		"fk_soc" => array("type"=>"integer:Societe:societe/class/societe.class.php:1:((status:=:1) AND (entity:IN:__SHARED_ENTITIES__))", "label"=>"ThirdParty", "picto"=>"company", "enabled"=>"isModEnabled('societe')", 'position'=>50, 'notnull'=>-1, "visible"=>"1", "index"=>"1", "css"=>"maxwidth500 widthcentpercentminusxx", "csslist"=>"tdoverflowmax150", "help"=>"OrganizationEventLinkToThirdParty", "validate"=>"1",),
+		"fk_project" => array("type"=>"integer:Project:projet/class/project.class.php:1", "label"=>"Project", "picto"=>"project", "enabled"=>"isModEnabled('project')", 'position'=>52, 'notnull'=>-1, "visible"=>"-1", "index"=>"1", "css"=>"maxwidth500 widthcentpercentminusxx", "csslist"=>"tdoverflowmax150", "validate"=>"1",),
+		"description" => array("type"=>"text", "label"=>"Description", "enabled"=>"1", 'position'=>60, 'notnull'=>0, "visible"=>"3", "validate"=>"1",),
+		"note_public" => array("type"=>"html", "label"=>"NotePublic", "enabled"=>"1", 'position'=>61, 'notnull'=>0, "visible"=>"0", "cssview"=>"wordbreak", "validate"=>"1",),
+		"note_private" => array("type"=>"html", "label"=>"NotePrivate", "enabled"=>"1", 'position'=>62, 'notnull'=>0, "visible"=>"0", "cssview"=>"wordbreak", "validate"=>"1",),
+		"date_creation" => array("type"=>"datetime", "label"=>"DateCreation", "enabled"=>"1", 'position'=>500, 'notnull'=>1, "visible"=>"-2",),
+		"tms" => array("type"=>"timestamp", "label"=>"DateModification", "enabled"=>"1", 'position'=>501, 'notnull'=>0, "visible"=>"-2",),
+		"fk_user_creat" => array("type"=>"integer:User:user/class/user.class.php", "label"=>"UserAuthor", "picto"=>"user", "enabled"=>"1", 'position'=>510, 'notnull'=>1, "visible"=>"-2", "csslist"=>"tdoverflowmax150",),
+		"fk_user_modif" => array("type"=>"integer:User:user/class/user.class.php", "label"=>"UserModif", "picto"=>"user", "enabled"=>"1", 'position'=>511, 'notnull'=>-1, "visible"=>"-2", "csslist"=>"tdoverflowmax150",),
+		"last_main_doc" => array("type"=>"varchar(255)", "label"=>"LastMainDoc", "enabled"=>"1", 'position'=>600, 'notnull'=>0, "visible"=>"0",),
+		"import_key" => array("type"=>"varchar(14)", "label"=>"ImportId", "enabled"=>"1", 'position'=>1000, 'notnull'=>-1, "visible"=>"-2",),
+		"model_pdf" => array("type"=>"varchar(255)", "label"=>"Model pdf", "enabled"=>"1", 'position'=>1010, 'notnull'=>-1, "visible"=>"0",),
+		"status" => array("type"=>"integer", "label"=>"Status", "enabled"=>"1", 'position'=>2000, 'notnull'=>1, "visible"=>"1", "index"=>"1", "arrayofkeyval"=>array("0" => "Brouillon", "1" => "Valid&eacute;", "9" => "Annul&eacute;"), "validate"=>"1",),
+		"transportmode" => array("type"=>"sellist:c_transportmode:label:rowid::", "label"=>"TransportMode", "enabled"=>"1", 'position'=>50, 'notnull'=>0, "visible"=>"1",),
 	);
 	public $rowid;
 	public $ref;
@@ -129,6 +142,19 @@ class FormuledeVoyage extends CommonObject
 	public $destination;
 	public $date_departure;
 	public $dateroundtrip;
+	public $fk_soc;
+	public $fk_project;
+	public $description;
+	public $note_public;
+	public $note_private;
+	public $date_creation;
+	public $tms;
+	public $fk_user_creat;
+	public $fk_user_modif;
+	public $last_main_doc;
+	public $import_key;
+	public $model_pdf;
+	public $status;
 	public $transportmode;
 	// END MODULEBUILDER PROPERTIES
 
@@ -221,9 +247,21 @@ class FormuledeVoyage extends CommonObject
 	 */
 	public function create(User $user, $notrigger = false)
 	{
+		global $langs;
+
 		$resultcreate = $this->createCommon($user, $notrigger);
 
 		//$resultvalidate = $this->validate($user, $notrigger);
+
+		// ----------------------- AJOUT DE THOMAS -----------------------
+		// Check parameters
+		if (strlen($this->label)<5) {
+			$langs->load("errors");
+			$this->error = $langs->trans("ErrorShortLabel", $this->email);
+			return -1;
+		}
+		// ----------------------- AJOUT DE THOMAS -----------------------
+
 
 		return $resultcreate;
 	}
@@ -742,6 +780,21 @@ class FormuledeVoyage extends CommonObject
 		if (property_exists($this, 'label')) {
 			$datas['ref'] = '<br>'.$langs->trans('Label').':</b> '.$this->label;
 		}
+		/*if (property_exists($this, 'cost')) {
+			$datas['ref'] = '<br>'.$langs->trans('Cost').':</b> '.$this->label;
+		}
+		if (property_exists($this, 'destination')) {
+			$datas['ref'] = '<br>'.$langs->trans('Destination').':</b> '.$this->label;
+		}
+		if (property_exists($this, 'date_departure')) {
+			$datas['ref'] = '<br>'.$langs->trans('DateDeparture').':</b> '.$this->label;
+		}
+		if (property_exists($this, 'dateroundtrip')) {
+			$datas['ref'] = '<br>'.$langs->trans('DateRoundTrip').':</b> '.$this->label;
+		}
+		if (property_exists($this, 'transportmode')) {
+			$datas['ref'] = '<br>'.$langs->trans('TransportMode').':</b> '.$this->label;
+		}*/
 
 		return $datas;
 	}

@@ -52,7 +52,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 
 		// Family can be 'base' (core modules),'crm','financial','hr','projects','products','ecm','technic' (transverse modules),'interface' (link with external tools),'other','...'
 		// It is used to group modules by family in module setup page
-		$this->family = "other";
+		$this->family = "ATM";
 
 		// Module position in the family on 2 digits ('01', '10', '20', ...)
 		$this->module_position = '90';
@@ -142,6 +142,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 		// List of module class names this module is in conflict with. Example: array('modModuleToDisable1', ...)
 		$this->conflictwith = array();
 
+
 		// The language file dedicated to your module
 		$this->langfiles = array("clienjoyholidays@clienjoyholidays");
 
@@ -229,19 +230,30 @@ class modCliEnjoyHolidays extends DolibarrModules
 		 );
 		 */
 		/* BEGIN MODULEBUILDER DICTIONARIES */
-		$this->dictionaries = array();
+		$this->dictionaries=array(
+			'langs'=>'clienjoyholidays@clienjoyholidays',
+			'tabname'=>array('c_transportmode'),
+			'tablib'=>array('TransportMode'),
+			'tabsql'=>array('SELECT t.rowid as rowid, t.code, t.label, t.active FROM llx_c_transportmode as t'),
+			'tabsqlsort'=>array('label ASC'),
+			'tabfield'=>array('code,label'),
+			'tabfieldvalue'=>array('code,label'),
+			'tabfieldinsert'=>array('code,label'),
+			'tabrowid'=>array('rowid'),
+			'tabcond'=>array(isModEnabled('clienjoyholidays')),
+			'tabhelp'=>array(array('code'=>$langs->trans('CodeTooltipHelp'), 'field2' => 'field2tooltip')),
+		);
 		/* END MODULEBUILDER DICTIONARIES */
 
 		// Boxes/Widgets
 		// Add here list of php file(s) stored in clienjoyholidays/core/boxes that contains a class to show a widget.
 		/* BEGIN MODULEBUILDER WIDGETS */
 		$this->boxes = array(
-			//  0 => array(
-			//      'file' => 'clienjoyholidayswidget1.php@clienjoyholidays',
-			//      'note' => 'Widget provided by CliEnjoyHolidays',
-			//      'enabledbydefaulton' => 'Home',
-			//  ),
-			//  ...
+			  0 => array(
+			      'file' => 'box_enjoyholidays.php@clienjoyholidays',
+			      'note' => 'Widget provided by CliEnjoyHolidays',
+			      'enabledbydefaulton' => 'Home',
+			  ),
 		);
 		/* END MODULEBUILDER WIDGETS */
 
@@ -275,24 +287,22 @@ class modCliEnjoyHolidays extends DolibarrModules
 		$r = 0;
 		// Add here entries to declare new permissions
 		/* BEGIN MODULEBUILDER PERMISSIONS */
-		/*
-		$o = 1;
-		$this->rights[$r][0] = $this->numero . sprintf("%02d", ($o * 10) + 1); // Permission id (must not be already used)
-		$this->rights[$r][1] = 'Read objects of CliEnjoyHolidays'; // Permission label
+		$this->rights[$r][0] = $this->numero . sprintf('%02d', (0 * 10) + 0 + 1);
+		$this->rights[$r][1] = 'ReadCliEnjoyHolidays';
 		$this->rights[$r][4] = 'formuledevoyage';
-		$this->rights[$r][5] = 'read'; // In php code, permission will be checked by test if ($user->hasRight('clienjoyholidays', 'formuledevoyage', 'read'))
+		$this->rights[$r][5] = 'read';
 		$r++;
-		$this->rights[$r][0] = $this->numero . sprintf("%02d", ($o * 10) + 2); // Permission id (must not be already used)
-		$this->rights[$r][1] = 'Create/Update objects of CliEnjoyHolidays'; // Permission label
+		$this->rights[$r][0] = $this->numero . sprintf('%02d', (0 * 10) + 1 + 1);
+		$this->rights[$r][1] = 'CreateUpdateCliEnjoyHolidays';
 		$this->rights[$r][4] = 'formuledevoyage';
-		$this->rights[$r][5] = 'write'; // In php code, permission will be checked by test if ($user->hasRight('clienjoyholidays', 'formuledevoyage', 'write'))
+		$this->rights[$r][5] = 'write';
 		$r++;
-		$this->rights[$r][0] = $this->numero . sprintf("%02d", ($o * 10) + 3); // Permission id (must not be already used)
-		$this->rights[$r][1] = 'Delete objects of CliEnjoyHolidays'; // Permission label
+		$this->rights[$r][0] = $this->numero . sprintf('%02d', (0 * 10) + 2 + 1);
+		$this->rights[$r][1] = 'DeleteCliEnjoyHolidays';
 		$this->rights[$r][4] = 'formuledevoyage';
-		$this->rights[$r][5] = 'delete'; // In php code, permission will be checked by test if ($user->hasRight('clienjoyholidays', 'formuledevoyage', 'delete'))
+		$this->rights[$r][5] = 'delete';
 		$r++;
-		*/
+		
 		/* END MODULEBUILDER PERMISSIONS */
 
 		// Main menu entries to add
@@ -317,97 +327,56 @@ class modCliEnjoyHolidays extends DolibarrModules
 		);
 		/* END MODULEBUILDER TOPMENU */
 		/* BEGIN MODULEBUILDER LEFTMENU MYOBJECT */
-		/*
+		/* LEFTMENU FORMULEDEVOYAGE */
 		$this->menu[$r++]=array(
-			'fk_menu'=>'fk_mainmenu=clienjoyholidays',      // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
-			'type'=>'left',                          // This is a Left menu entry
-			'titre'=>'FormuledeVoyage',
-			'prefix' => img_picto('', $this->picto, 'class="pictofixedwidth valignmiddle paddingright"'),
-			'mainmenu'=>'clienjoyholidays',
-			'leftmenu'=>'formuledevoyage',
-			'url'=>'/clienjoyholidays/clienjoyholidaysindex.php',
-			'langs'=>'clienjoyholidays@clienjoyholidays',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
-			'position'=>1000+$r,
-			'enabled'=>'isModEnabled("clienjoyholidays")', // Define condition to show or hide menu entry. Use 'isModEnabled("clienjoyholidays")' if entry must be visible if module is enabled.
-			'perms'=>'$user->hasRight("clienjoyholidays", "formuledevoyage", "read")',
-			'target'=>'',
-			'user'=>2,				                // 0=Menu for internal users, 1=external users, 2=both
+			 'fk_menu' => 'fk_mainmenu=clienjoyholidays',
+			 'type' => 'left',
+			 'titre' => 'FormuledeVoyage',
+			 'mainmenu' => 'clienjoyholidays',
+			 'leftmenu' => 'formuledevoyage',
+			 'url' => '/clienjoyholidays/formuledevoyage_list.php',
+			 'langs' => 'clienjoyholidays@clienjoyholidays',
+			 'position' => 1000,
+			 'enabled' => 'isModEnabled(\'clienjoyholidays\')',
+			 'perms' => '$user->hasRight(\'clienjoyholidays\', \'formuledevoyage\', \'read\')',
+			 'target' => '',
+			 'user' => 2,
 		);
+		/* END LEFTMENU FORMULEDEVOYAGE */
+		/* LEFTMENU LISTFORMULEDEVOYAGE */
 		$this->menu[$r++]=array(
-			'fk_menu'=>'fk_mainmenu=clienjoyholidays,fk_leftmenu=formuledevoyage',	    // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
-			'type'=>'left',			                // This is a Left menu entry
-			'titre'=>'New_FormuledeVoyage',
-			'mainmenu'=>'clienjoyholidays',
-			'leftmenu'=>'clienjoyholidays_formuledevoyage_new',
-			'url'=>'/clienjoyholidays/formuledevoyage_card.php?action=create',
-			'langs'=>'clienjoyholidays@clienjoyholidays',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
-			'position'=>1000+$r,
-			'enabled'=>'isModEnabled("clienjoyholidays")', // Define condition to show or hide menu entry. Use 'isModEnabled("clienjoyholidays")' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
-			'perms'=>'$user->hasRight("clienjoyholidays", "formuledevoyage", "write")'
-			'target'=>'',
-			'user'=>2,				                // 0=Menu for internal users, 1=external users, 2=both
+			 'fk_menu' => 'fk_mainmenu=clienjoyholidays,fk_leftmenu=formuledevoyage',
+			 'type' => 'left',
+			 'titre' => 'ListFormuledeVoyage',
+			 'mainmenu' => 'clienjoyholidays',
+			 'leftmenu' => 'clienjoyholidays_formuledevoyage_list',
+			 'url' => '/clienjoyholidays/formuledevoyage_list.php',
+			 'langs' => 'clienjoyholidays@clienjoyholidays',
+			 'position' => 1000,
+			 'enabled' => 'isModEnabled(\'clienjoyholidays\')',
+			 'perms' => '$user->hasRight(\'clienjoyholidays\', \'formuledevoyage\', \'read\')',
+			 'target' => '',
+			 'user' => 2,
 		);
+		/* END LEFTMENU LISTFORMULEDEVOYAGE */
+		/* LEFTMENU NEWFORMULEDEVOYAGE */
 		$this->menu[$r++]=array(
-			'fk_menu'=>'fk_mainmenu=clienjoyholidays,fk_leftmenu=formuledevoyage',	    // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
-			'type'=>'left',			                // This is a Left menu entry
-			'titre'=>'List_FormuledeVoyage',
-			'mainmenu'=>'clienjoyholidays',
-			'leftmenu'=>'clienjoyholidays_formuledevoyage_list',
-			'url'=>'/clienjoyholidays/formuledevoyage_list.php',
-			'langs'=>'clienjoyholidays@clienjoyholidays',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
-			'position'=>1000+$r,
-			'enabled'=>'isModEnabled("clienjoyholidays")', // Define condition to show or hide menu entry. Use 'isModEnabled("clienjoyholidays")' if entry must be visible if module is enabled.
-			'perms'=>'$user->hasRight("clienjoyholidays", "formuledevoyage", "read")'
-			'target'=>'',
-			'user'=>2,				                // 0=Menu for internal users, 1=external users, 2=both
+			 'fk_menu' => 'fk_mainmenu=clienjoyholidays,fk_leftmenu=formuledevoyage',
+			 'type' => 'left',
+			 'titre' => 'NewFormuledeVoyage',
+			 'mainmenu' => 'clienjoyholidays',
+			 'leftmenu' => 'clienjoyholidays_formuledevoyage_new',
+			 'url' => '/clienjoyholidays/formuledevoyage_card.php?action=create',
+			 'langs' => 'clienjoyholidays@clienjoyholidays',
+			 'position' => 1000,
+			 'enabled' => 'isModEnabled(\'clienjoyholidays\')',
+			 'perms' => '$user->hasRight(\'clienjoyholidays\', \'formuledevoyage\', \'write\')',
+			 'target' => '',
+			 'user' => 2,
 		);
-		*/
-		/*LEFTMENU FORMULEDEVOYAGE*/
-		$this->menu[$r++]=array(
-			'fk_menu'=>'fk_mainmenu=clienjoyholidays',
-			'type'=>'left',
-			'titre'=>'FormuledeVoyage',
-			'prefix' => img_picto('', $this->picto, 'class="paddingright pictofixedwidth valignmiddle"'),
-			'mainmenu'=>'clienjoyholidays',
-			'leftmenu'=>'formuledevoyage',
-			'url'=>'/clienjoyholidays/formuledevoyage_list.php',
-			'langs'=>'clienjoyholidays@clienjoyholidays',
-			'position'=>1000+$r,
-			'enabled'=>'isModEnabled("clienjoyholidays")',
-			'perms'=>'$user->hasRight("clienjoyholidays", "formuledevoyage", "read")',
-			'target'=>'',
-			'user'=>2,
-		);
-        $this->menu[$r++]=array(
-            'fk_menu'=>'fk_mainmenu=clienjoyholidays,fk_leftmenu=formuledevoyage',
-            'type'=>'left',
-            'titre'=>'List FormuledeVoyage',
-            'mainmenu'=>'clienjoyholidays',
-            'leftmenu'=>'clienjoyholidays_formuledevoyage_list',
-            'url'=>'/clienjoyholidays/formuledevoyage_list.php',
-            'langs'=>'clienjoyholidays@clienjoyholidays',
-            'position'=>1000+$r,
-            'enabled'=>'isModEnabled("clienjoyholidays")',
-			'perms'=>'$user->hasRight("clienjoyholidays", "formuledevoyage", "read")',
-            'target'=>'',
-            'user'=>2,
-        );
-        $this->menu[$r++]=array(
-            'fk_menu'=>'fk_mainmenu=clienjoyholidays,fk_leftmenu=formuledevoyage',
-            'type'=>'left',
-            'titre'=>'New FormuledeVoyage',
-            'mainmenu'=>'clienjoyholidays',
-            'leftmenu'=>'clienjoyholidays_formuledevoyage_new',
-            'url'=>'/clienjoyholidays/formuledevoyage_card.php?action=create',
-            'langs'=>'clienjoyholidays@clienjoyholidays',
-            'position'=>1000+$r,
-            'enabled'=>'isModEnabled("clienjoyholidays")',
-			'perms'=>'$user->hasRight("clienjoyholidays", "formuledevoyage", "write")',
-            'target'=>'',
-            'user'=>2
-        );
+		/* END LEFTMENU NEWFORMULEDEVOYAGE */
 
-		/*END LEFTMENU FORMULEDEVOYAGE*/
+
 		/* END MODULEBUILDER LEFTMENU MYOBJECT */
 		// Exports profiles provided by this module
 		$r = 1;
