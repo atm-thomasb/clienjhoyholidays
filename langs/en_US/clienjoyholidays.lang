@@ -27,6 +27,8 @@ Destination = Destination
 DateDeparture = Date Departure
 DateRoundTrip = Date Round Trip
 TransportMode = transport Mode
+EnjoyHelpTextCost = If not specified, a default cost is used according to the country. If the country is not specified, a default cost is used.
+
 
 #
 # Admin page

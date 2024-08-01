@@ -27,6 +27,7 @@ Destination = Destination
 DateDeparture = Date Départ
 DateRoundTrip = Date Arrivée
 TransportMode = Mode de Transport
+EnjoyHelpTextCost = Si non renseigné, un tarif par défaut est enregistré en fonction du pays. Si le pays n'est pas renseigné, un tarif par défaut est utilisé.
 
 #
 # Admin page
@@ -67,6 +68,7 @@ NewFormuledeVoyage = Nouvelle Formule de Voyage
 #
 # Enjoyholidays widget
 #
-MyWidget = Enjoy Holidays Widget
+MyWidget = Widget Enjoy Holidays
 MyWidgetDescription = A neat widget for your holidays
-BoxTitleEnjoyHolidays = AAAAAAAAAAAAAAAAAAAAAAAAAH
+BoxTitleLastFormulesDeVoyage = Les %s dernières formules de voyages créées
+
