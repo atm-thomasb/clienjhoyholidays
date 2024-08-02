@@ -232,16 +232,28 @@ class modCliEnjoyHolidays extends DolibarrModules
 		/* BEGIN MODULEBUILDER DICTIONARIES */
 		$this->dictionaries=array(
 			'langs'=>'clienjoyholidays@clienjoyholidays',
-			'tabname'=>array('c_transportmode'),
-			'tablib'=>array('TransportMode'),
-			'tabsql'=>array('SELECT t.rowid as rowid, t.code, t.label, t.active FROM llx_c_transportmode as t'),
-			'tabsqlsort'=>array('label ASC'),
-			'tabfield'=>array('code,label'),
-			'tabfieldvalue'=>array('code,label'),
-			'tabfieldinsert'=>array('code,label'),
-			'tabrowid'=>array('rowid'),
-			'tabcond'=>array(isModEnabled('clienjoyholidays')),
-			'tabhelp'=>array(array('code'=>$langs->trans('CodeTooltipHelp'), 'field2' => 'field2tooltip')),
+			'tabname'=>array(
+				'c_enjoyholidays_transport_mode',
+				'c_enjoyholidays_country_costs'
+			),
+			'tablib'=>array(
+				'EnjoyHolidays_Transport_Mode',
+				'EnjoyHolidays_Country_Costs'
+			),
+			'tabsql'=>array(
+				'SELECT t.rowid as rowid, t.code, t.label, t.active FROM '.MAIN_DB_PREFIX.'c_enjoyholidays_transport_mode as t',
+				'SELECT t.rowid as rowid, t.fk_pays, t.label, t.active FROM '.MAIN_DB_PREFIX.'c_enjoyholidays_country_costs as t'
+			),
+			'tabsqlsort'=>array('label ASC', 'label ASC'),
+			'tabfield'=>array('code,label', 'fk_pays,label'),
+			'tabfieldvalue'=>array('code,label', 'fk_pays,label'),
+			'tabfieldinsert'=>array('code,label', 'fk_pays,label'),
+			'tabrowid'=>array('rowid', 'rowid'),
+			'tabcond'=>array(isModEnabled('clienjoyholidays'), isModEnabled('clienjoyholidays')),
+			'tabhelp'=>array(
+				array('code'=>$langs->trans('CodeTooltipHelp'), 'field2' => 'field2tooltip'),
+				array('fk_pays'=>$langs->trans('CodeTooltipHelp'), 'field2' => 'field2tooltip')
+			),
 		);
 		/* END MODULEBUILDER DICTIONARIES */
 
@@ -343,21 +355,6 @@ class modCliEnjoyHolidays extends DolibarrModules
 			 'user' => 2,
 		);
 		/* END LEFTMENU FORMULEDEVOYAGE */
-		/* LEFTMENU LISTFORMULEDEVOYAGE */
-		$this->menu[$r++]=array(
-			 'fk_menu' => 'fk_mainmenu=clienjoyholidays,fk_leftmenu=formuledevoyage',
-			 'type' => 'left',
-			 'titre' => 'ListFormuledeVoyage',
-			 'mainmenu' => 'clienjoyholidays',
-			 'leftmenu' => 'clienjoyholidays_formuledevoyage_list',
-			 'url' => '/clienjoyholidays/formuledevoyage_list.php',
-			 'langs' => 'clienjoyholidays@clienjoyholidays',
-			'position' => 1000 + $r,
-			 'enabled' => 'isModEnabled(\'clienjoyholidays\')',
-			 'perms' => '$user->hasRight(\'clienjoyholidays\', \'formuledevoyage\', \'read\')',
-			 'target' => '',
-			 'user' => 2,
-		);
 		/* END LEFTMENU LISTFORMULEDEVOYAGE */
 		/* LEFTMENU NEWFORMULEDEVOYAGE */
 		$this->menu[$r++]=array(
@@ -375,6 +372,21 @@ class modCliEnjoyHolidays extends DolibarrModules
 			 'user' => 2,
 		);
 		/* END LEFTMENU NEWFORMULEDEVOYAGE */
+		/* LEFTMENU LISTFORMULEDEVOYAGE */
+		$this->menu[$r++]=array(
+			'fk_menu' => 'fk_mainmenu=clienjoyholidays,fk_leftmenu=formuledevoyage',
+			'type' => 'left',
+			'titre' => 'ListFormuledeVoyage',
+			'mainmenu' => 'clienjoyholidays',
+			'leftmenu' => 'clienjoyholidays_formuledevoyage_list',
+			'url' => '/clienjoyholidays/formuledevoyage_list.php',
+			'langs' => 'clienjoyholidays@clienjoyholidays',
+			'position' => 1000 + $r,
+			'enabled' => 'isModEnabled(\'clienjoyholidays\')',
+			'perms' => '$user->hasRight(\'clienjoyholidays\', \'formuledevoyage\', \'read\')',
+			'target' => '',
+			'user' => 2,
+		);
 
 
 		/* END MODULEBUILDER LEFTMENU MYOBJECT */

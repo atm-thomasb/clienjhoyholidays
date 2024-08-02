@@ -133,7 +133,7 @@ class FormuledeVoyage extends CommonObject
 		"import_key" => array("type"=>"varchar(14)", "label"=>"ImportId", "enabled"=>"1", 'position'=>1000, 'notnull'=>-1, "visible"=>"-2",),
 		"model_pdf" => array("type"=>"varchar(255)", "label"=>"Model pdf", "enabled"=>"1", 'position'=>1010, 'notnull'=>-1, "visible"=>"0",),
 		"status" => array("type"=>"integer", "label"=>"Status", "enabled"=>"1", 'position'=>2000, 'notnull'=>1, "visible"=>"1", "index"=>"1", "arrayofkeyval"=>array("0" => "Brouillon", "1" => "Valid&eacute;", "9" => "Annul&eacute;"), "validate"=>"1",),
-		"transportmode" => array("type"=>"sellist:c_transportmode:label:rowid::", "label"=>"TransportMode", "enabled"=>"1", 'position'=>50, 'notnull'=>0, "visible"=>"1",),
+		"transportmode" => array("type"=>"sellist:c_transport_mode:label:rowid::", "label"=>"TransportMode", "enabled"=>"1", 'position'=>50, 'notnull'=>0, "visible"=>"1",),
 	);
 	public $rowid;
 	public $ref;
@@ -258,19 +258,30 @@ class FormuledeVoyage extends CommonObject
 			return -1;
 		}
 
-		$countryPrice = array(
-			"Default" => "50",
-			"1" => "45",
-			"Germany" => "55",
-			"United Kingdom" => "65",
-			"usa" => "80"
-		);
+//		$countryPrice = array(
+//			"Default" => "50",
+//			"1" => "45",
+//			"Germany" => "55",
+//			"United Kingdom" => "65",
+//			"usa" => "80"
+//		);
+
+
 
 		if (empty($this->cost)) {
 			if ($this->destination != "0") {
-				$this->cost = $countryPrice[$this->destination];
+				$sql = "SELECT code, label";
+				$sql .= " FROM ".MAIN_DB_PREFIX."c_enjoyholidays_country_costs as c";
+				$sql .= " WHERE c.code = $this->destination";
+				$result = $this->db->query($sql);
+				//var_dump($result);exit();
+				$this->cost = $result;
 			} else {
+				$sql = "SELECT code, label";
+				$sql .= " FROM ".MAIN_DB_PREFIX."c_enjoyholidays_country_costs as c";
+				$sql .= " WHERE c.code = 0";
 				$this->cost = $countryPrice["Default"];
+				//var_dump($result);exit();
 			}
 		}
 

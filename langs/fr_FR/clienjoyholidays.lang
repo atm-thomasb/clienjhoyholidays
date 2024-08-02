@@ -32,9 +32,9 @@ EnjoyHelpTextCost = Si non renseigné, un tarif par défaut est enregistré en f
 #
 # Admin page
 #
-ReadCliEnjoyHolidays = Lire l'objet FormuledeVoyage de CliEnjoyHolidays
-CreateUpdateCliEnjoyHolidays = Créer/Mettre à jour l'objet FormuledeVoyage de CliEnjoyHolidays
-DeleteCliEnjoyHolidays = Supprimer l'objet FormuledeVoyage de CliEnjoyHolidays
+ReadCliEnjoyHolidays = Lire l'objet Formule de Voyage
+CreateUpdateCliEnjoyHolidays = Créer/Mettre à jour l'objet Formule de Voyage
+DeleteCliEnjoyHolidays = Supprimer l'objet Formule de Voyage
 
 #
 # About page
@@ -61,7 +61,7 @@ MyPageName = My page name
 #
 # Left Menu
 #
-ListFormuledeVoyage = Lister Formule de Voyage
+ListFormuledeVoyage = Liste
 NewFormuledeVoyage = Nouvelle Formule de Voyage
 
 
