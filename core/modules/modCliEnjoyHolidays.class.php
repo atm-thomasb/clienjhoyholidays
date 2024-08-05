@@ -242,14 +242,14 @@ class modCliEnjoyHolidays extends DolibarrModules
 			),
 			'tabsql'=>array(
 				'SELECT t.rowid as rowid, t.code, t.label, t.active FROM '.MAIN_DB_PREFIX.'c_enjoyholidays_transport_mode as t',
-				'SELECT t.rowid as rowid, t.fk_pays, t.label, t.active FROM '.MAIN_DB_PREFIX.'c_enjoyholidays_country_costs as t'
+				'SELECT t.rowid as rowid, t.cost as cost, t.active, c.label as country, c.code as country_code FROM '.MAIN_DB_PREFIX.'c_enjoyholidays_country_costs as t JOIN '.MAIN_DB_PREFIX.'c_country as c ON c.rowid = t.country AND c.active=1'
 			),
-			'tabsqlsort'=>array('label ASC', 'label ASC'),
-			'tabfield'=>array('code,label', 'fk_pays,label'),
-			'tabfieldvalue'=>array('code,label', 'fk_pays,label'),
-			'tabfieldinsert'=>array('code,label', 'fk_pays,label'),
-			'tabrowid'=>array('rowid', 'rowid'),
-			'tabcond'=>array(isModEnabled('clienjoyholidays'), isModEnabled('clienjoyholidays')),
+			'tabsqlsort'=>array('label ASC','country ASC'),
+			'tabfield'=>array('code,label','country,cost'),
+			'tabfieldvalue'=>array('code,label','country,cost'),
+			'tabfieldinsert'=>array('code,label','country,cost'),
+			'tabrowid'=>array('rowid','rowid'),
+			'tabcond'=>array(isModEnabled('clienjoyholidays'),isModEnabled('clienjoyholidays')),
 			'tabhelp'=>array(
 				array('code'=>$langs->trans('CodeTooltipHelp'), 'field2' => 'field2tooltip'),
 				array('fk_pays'=>$langs->trans('CodeTooltipHelp'), 'field2' => 'field2tooltip')
@@ -333,7 +333,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 			'langs'=>'clienjoyholidays@clienjoyholidays', // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
 			'position'=>1000 + $r,
 			'enabled'=>'isModEnabled("clienjoyholidays")', // Define condition to show or hide menu entry. Use 'isModEnabled("clienjoyholidays")' if entry must be visible if module is enabled.
-			'perms'=>'1', // Use 'perms'=>'$user->hasRight("clienjoyholidays", "formuledevoyage", "read")' if you want your menu with a permission rules
+			'perms'=>'$user->hasRight(\'clienjoyholidays\', \'formuledevoyage\', \'read\')', // Use 'perms'=>'$user->hasRight("clienjoyholidays", "formuledevoyage", "read")' if you want your menu with a permission rules
 			'target'=>'',
 			'user'=>2, // 0=Menu for internal users, 1=external users, 2=both
 		);

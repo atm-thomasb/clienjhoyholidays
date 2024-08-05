@@ -22,12 +22,13 @@ ModuleMyModuleName = MyModule
 # Module description 'ModuleMyModuleDesc'
 ModuleMyModuleDesc = Projet integration ThomasB
 CopyOfEnjoy = Copie_De_
-Cost = Coût
+Cost = Tarif
 Destination = Destination
 DateDeparture = Date Départ
 DateRoundTrip = Date Arrivée
 TransportMode = Mode de Transport
 EnjoyHelpTextCost = Si non renseigné, un tarif par défaut est enregistré en fonction du pays. Si le pays n'est pas renseigné, un tarif par défaut est utilisé.
+FormuledeVoyages = Formules de Voyage
 
 #
 # Admin page
@@ -35,6 +36,13 @@ EnjoyHelpTextCost = Si non renseigné, un tarif par défaut est enregistré en f
 ReadCliEnjoyHolidays = Lire l'objet Formule de Voyage
 CreateUpdateCliEnjoyHolidays = Créer/Mettre à jour l'objet Formule de Voyage
 DeleteCliEnjoyHolidays = Supprimer l'objet Formule de Voyage
+
+#
+# Dictionnaries
+#
+EnjoyHolidays_Transport_Mode = Enjoyholidays Mode de Transport
+EnjoyHolidays_Country_Costs = Enjoyholidays Tarif par Pays
+
 
 #
 # About page
@@ -51,6 +59,7 @@ ErrorShortLabel = Erreur, libellé trop court
 FormuledeVoyage = Formule de Voyage
 NewObjectFormuledeVoyage = Nouvelle %s
 DeleteFormuledeVoyage = Supprimer Formule de Voyage
+Active = Validé
 
 #
 # Sample page
