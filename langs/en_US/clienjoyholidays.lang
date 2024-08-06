@@ -53,6 +53,7 @@ ErrorShortLabel = Error, label too short
 FormuledeVoyage = Trip Sheet
 NewObjectFormuledeVoyage = New %s
 DeleteFormuledeVoyage = Delete TripSheet
+ErrorFormuleDeVoyageAlreadyExists = Error, a Trip Sheet of the same reference already exists.
 
 
 #

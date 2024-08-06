@@ -117,7 +117,7 @@ class FormuledeVoyage extends CommonObject
 		"ref" => array("type"=>"varchar(128)", "label"=>"Ref", "enabled"=>"1", 'position'=>20, 'notnull'=>1, "visible"=>"1", "index"=>"1", "searchall"=>"1", "showoncombobox"=>"1", "validate"=>"1", "comment"=>"Reference of object", "required"=>"1",),
 		"label" => array("type"=>"varchar(255)", "label"=>"Label", "enabled"=>"1", 'position'=>30, 'notnull'=>1, "visible"=>"1", "alwayseditable"=>"1", "searchall"=>"1", "css"=>"minwidth300", "cssview"=>"wordbreak", "showoncombobox"=>"2", "validate"=>"1", "required"=>"1",),
 		"cost" => array("type"=>"price", "label"=>"Cost", "enabled"=>"1", 'position'=>40, 'notnull'=>0, "visible"=>"1", "alwayseditable"=>"1", "searchall"=>"1", "css"=>"minwidth300", "cssview"=>"wordbreak", "help"=>"EnjoyHelpTextCost","showoncombobox"=>"2", "validate"=>"1",),
-		"destination" => array("type"=>"sellist:c_country:label:rowid::", "label"=>"Destination", "enabled"=>"1", 'position'=>45, 'notnull'=>1, "visible"=>"1", "required"=>"1",),
+		"destination" => array("type"=>"sellist:c_country:label:rowid::(active:=:1)", "label"=>"Destination", "enabled"=>"1", 'position'=>45, 'notnull'=>1, "visible"=>"1", "required"=>"1",),
 		"date_departure" => array("type"=>"datetime", "label"=>"DateDeparture", "enabled"=>"1", 'position'=>48, 'notnull'=>0, "visible"=>"1",),
 		"dateroundtrip" => array("type"=>"datetime", "label"=>"DateRoundTrip", "enabled"=>"1", 'position'=>49, 'notnull'=>0, "visible"=>"1",),
 		"fk_soc" => array("type"=>"integer:Societe:societe/class/societe.class.php:1:((status:=:1) AND (entity:IN:__SHARED_ENTITIES__))", "label"=>"ThirdParty", "picto"=>"company", "enabled"=>"isModEnabled('societe')", 'position'=>50, 'notnull'=>-1, "visible"=>"1", "index"=>"1", "css"=>"maxwidth500 widthcentpercentminusxx", "csslist"=>"tdoverflowmax150", "validate"=>"1",),
@@ -131,8 +131,8 @@ class FormuledeVoyage extends CommonObject
 		"last_main_doc" => array("type"=>"varchar(255)", "label"=>"LastMainDoc", "enabled"=>"1", 'position'=>600, 'notnull'=>0, "visible"=>"0",),
 		"import_key" => array("type"=>"varchar(14)", "label"=>"ImportId", "enabled"=>"1", 'position'=>1000, 'notnull'=>-1, "visible"=>"-2",),
 		"model_pdf" => array("type"=>"varchar(255)", "label"=>"Model pdf", "enabled"=>"1", 'position'=>1010, 'notnull'=>-1, "visible"=>"0",),
-		"status" => array("type"=>"integer", "label"=>"Status", "enabled"=>"1", 'position'=>2000, 'notnull'=>1, "visible"=>"0", "index"=>"1", "arrayofkeyval"=>array("0" => "Brouillon", "1" => "Valid&eacute;", "9" => "Annul&eacute;"), "validate"=>"1",),
-		"transportmode" => array("type"=>"sellist:c_enjoyholidays_transport_mode:label:rowid::", "label"=>"TransportMode", "enabled"=>"1", 'position'=>50, 'notnull'=>0, "visible"=>"1",),
+		"status" => array("type"=>"integer", "label"=>"Status", "enabled"=>"1", 'position'=>2000, 'notnull'=>1, "visible"=>"2", "index"=>"1", "arrayofkeyval"=>array("0" => "Brouillon", "1" => "Valid&eacute;", "9" => "Annul&eacute;"), "validate"=>"1",),
+		"transportmode" => array("type"=>"sellist:c_enjoyholidays_transport_mode:label:rowid::(active:=:1)", "label"=>"TransportMode", "enabled"=>"1", 'position'=>50, 'notnull'=>0, "visible"=>"1",),
 	);
 	public $rowid;
 	public $ref;
@@ -246,9 +246,7 @@ class FormuledeVoyage extends CommonObject
 	 */
 	public function create(User $user, $notrigger = false)
 	{
-		global $langs, $fields;
-
-		//$resultvalidate = $this->validate($user, $notrigger);
+		global $langs;
 
 		// Check parameters
 		if (strlen($this->label)<5) {
@@ -257,35 +255,37 @@ class FormuledeVoyage extends CommonObject
 			return -1;
 		}
 
-//		$countryPrice = array(
-//			"Default" => "50",
-//			"1" => "45",
-//			"Germany" => "55",
-//			"United Kingdom" => "65",
-//			"usa" => "80"
-//		);
-
-
-
-		if (empty($this->cost)) {
-			if ($this->destination != "0") {
-				$sql = "SELECT label";
-				$sql .= " FROM ".MAIN_DB_PREFIX."c_enjoyholidays_country_costs as c";
-				$sql .= " WHERE c.fk_pays = $this->destination";
-				$resql = $this->db->query($sql);
-				$obj = $this->db->fetch_object($resql);
-				var_dump("<pre>");
-//				var_dump($this->destination, $obj->label);exit();
-				$this->cost = $obj->label;
-			} else {
-				$sql = "SELECT label";
-				$sql .= " FROM ".MAIN_DB_PREFIX."c_enjoyholidays_country_costs as c";
-				$sql .= " WHERE c.fk_pays = 0";
-				$resql = $this->db->query($sql);
-				$obj = $this->db->fetch_object($resql);
-				$this->cost = $obj->label;
+		// Check unicity of ref
+		$sql = "SELECT count(*) as nb";
+		$sql .= " FROM ".$this->db->prefix()."clienjoyholidays_formuledevoyage";
+		$sql .= " WHERE ref = '".$this->db->escape($this->ref)."'";
+		$result = $this->db->query($sql);
+		if ($result) {
+			$obj = $this->db->fetch_object($result);
+			if ($obj->nb != 0) {
+				$this->error = $langs->trans("ErrorFormuleDeVoyageAlreadyExists");
+				return -1;
 			}
 		}
+
+
+		// Puts default price according to selected country
+		if (empty($this->cost)) {
+			$sql = "SELECT cost";
+			$sql .= " FROM ".MAIN_DB_PREFIX."c_enjoyholidays_country_costs";
+			$sql .= " WHERE country = $this->destination AND active=1";
+			$resql = $this->db->query($sql);
+			$obj = $this->db->fetch_object($resql);
+
+			if(!is_null($obj->cost)){
+				$this->cost = $obj->cost;
+			} else{
+
+				$this->cost = getDolGlobalString('CLIENJOYHOLIDAYS_DEFAULT_COST');
+			}
+		}
+
+		//var_dump($this->destination);exit();
 
 		$resultcreate = $this->createCommon($user, $notrigger);
 

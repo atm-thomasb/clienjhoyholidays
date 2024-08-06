@@ -19,7 +19,7 @@
 CREATE TABLE llx_c_enjoyholidays_country_costs
 (
     rowid		integer AUTO_INCREMENT PRIMARY KEY,
-    country		integer 				NOT NULL,
+    country		integer 				,
     cost		varchar(128)			NOT NULL,
     active		integer DEFAULT 1
 )ENGINE=innodb;

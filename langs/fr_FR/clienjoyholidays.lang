@@ -36,6 +36,9 @@ FormuledeVoyages = Formules de Voyage
 ReadCliEnjoyHolidays = Lire l'objet Formule de Voyage
 CreateUpdateCliEnjoyHolidays = Créer/Mettre à jour l'objet Formule de Voyage
 DeleteCliEnjoyHolidays = Supprimer l'objet Formule de Voyage
+CliEnjoyHolidaysSetup = Configuration d'EnjoyHolidays
+CliEnjoyHolidaysSetupPage = Configurations
+CLIENJOYHOLIDAYS_DEFAULT_COST = Tarif par défaut Formule de Voyage
 
 #
 # Dictionnaries
@@ -55,11 +58,12 @@ CliEnjoyHolidaysAboutPage = Page A propos de CliEnjoyHolidays
 # Card page
 #
 MyPageName = Formulaire
-ErrorShortLabel = Erreur, libellé trop court
+ErrorShortLabel = Erreur, libellé trop court.
 FormuledeVoyage = Formule de Voyage
 NewObjectFormuledeVoyage = Nouvelle %s
 DeleteFormuledeVoyage = Supprimer Formule de Voyage
 Active = Validé
+ErrorFormuleDeVoyageAlreadyExists = Erreur, une Formule de Voyage de même référence existe déjà.
 
 #
 # Sample page
