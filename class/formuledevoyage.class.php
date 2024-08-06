@@ -285,8 +285,6 @@ class FormuledeVoyage extends CommonObject
 			}
 		}
 
-		//var_dump($this->destination);exit();
-
 		$resultcreate = $this->createCommon($user, $notrigger);
 
 		return $resultcreate;
