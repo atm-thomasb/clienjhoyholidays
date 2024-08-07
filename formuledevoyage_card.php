@@ -301,7 +301,10 @@ if ($action == 'create') {
 
 	print '</form>';
 
-	//dol_set_focus('input[name="ref"]');
+	// ------------------------ MODIFIED ------------------------
+	print("<script src='".dol_buildpath('/clienjoyholidays/js/clienjoyholidays.js', 1)."'></script>");
+	print("<script> init();</script>");
+	// ------------------------ MODIFIE ------------------------
 }
 
 // Part to edit record
