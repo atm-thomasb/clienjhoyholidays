@@ -49,10 +49,6 @@ function getDefaultCost($destination)
 {
 	global $db;
 
-	if ($destination < 0 || !ctype_digit($destination)) {
-		return ["message" => "Pays Invalide.", "error" => "error"];
-	}
-
 	$sql = "SELECT cost";
 	$sql .= " FROM " . MAIN_DB_PREFIX . "c_enjoyholidays_country_costs";
 	$sql .= " WHERE country = $destination AND active=1";
@@ -69,15 +65,8 @@ function getDefaultCost($destination)
 		$message = "Success.";
 	} else {
 		$cost = getDolGlobalString('CLIENJOYHOLIDAYS_DEFAULT_COST');
-		# Check conf error
-		if ($cost === "" || $cost === "default value") {
-			return ["cost" => $cost, "message" => "Warning : Default cost configuration isn't set.", "error" => "warning",];
-		} else if ($cost < 0 || !ctype_digit($cost)) {
-			return ["cost" => $cost, "message" => "Warning : Default cost configuration is invalid.", "error" => "warning",];
-		} else {
-			$message = "Success (Default_Cost).";
-		}
+		$message = "Success (Default_Cost).";
 	}
 
-	return ["cost" => $cost, "message" => $message, "error" => "succes"];
+	return ["cost" => $cost, "message" => $message, "error" => "success"];
 }

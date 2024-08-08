@@ -303,6 +303,8 @@ echo '<span class="opacitymedium">'.$langs->trans("CliEnjoyHolidaysSetupPage").'
 
 if ($action == 'edit') {
 	print $formSetup->generateOutput(true);
+	print("<script src='".dol_buildpath('/clienjoyholidays/js/clienjoyholidays.js', 1)."'></script>");
+	print("<script> init('checkConfValue');</script>");
 	print '<br>';
 } elseif (!empty($formSetup->items)) {
 	print $formSetup->generateOutput();

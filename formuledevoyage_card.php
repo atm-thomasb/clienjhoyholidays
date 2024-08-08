@@ -301,10 +301,8 @@ if ($action == 'create') {
 
 	print '</form>';
 
-	// ------------------------ MODIFIED ------------------------
 	print("<script src='".dol_buildpath('/clienjoyholidays/js/clienjoyholidays.js', 1)."'></script>");
-	print("<script> init();</script>");
-	// ------------------------ MODIFIE ------------------------
+	print("<script> init('updateCost');</script>");
 }
 
 // Part to edit record
@@ -339,6 +337,9 @@ if (($id || $ref) && $action == 'edit') {
 	print $form->buttonsSaveCancel();
 
 	print '</form>';
+
+	print("<script src='".dol_buildpath('/clienjoyholidays/js/clienjoyholidays.js', 1)."'></script>");
+	print("<script> init('updateCost');</script>");
 }
 
 // Part to show record
