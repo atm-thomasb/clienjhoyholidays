@@ -39,6 +39,8 @@ DeleteCliEnjoyHolidays = Supprimer l'objet Formule de Voyage
 CliEnjoyHolidaysSetup = Configuration d'EnjoyHolidays
 CliEnjoyHolidaysSetupPage = Configurations
 CLIENJOYHOLIDAYS_DEFAULT_COST = Tarif par défaut Formule de Voyage
+CliEnjoyHolidaysInvalidCostConfigError = Erreur : Configuration de tarif par défaut invalide.
+CliEnjoyHolidaysCostConfigWarning = Attention : Le tarif par défaut n'a pas été défini.
 
 #
 # Dictionnaries

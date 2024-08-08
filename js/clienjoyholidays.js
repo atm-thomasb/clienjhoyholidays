@@ -8,13 +8,6 @@ function init(action) {
 				updateCost(selectDestination.val())
 			}
 		});
-	} else if (action === "checkConfValue"){
-		const selectConfValue = $('#setup-CLIENJOYHOLIDAYS_DEFAULT_COST');
-		selectConfValue.on('change', function () {
-			console.log('test');
-			console.log(selectConfValue.val());
-			checkConfValue(selectConfValue.val())
-		});
 	}
 }
 
@@ -45,14 +38,3 @@ function updateCost(destination) {
 		}
 	})
 }
-
-function checkConfValue(confValue) {
-	if (confValue === "" || confValue === "default value") {
-		$.jnotify('Warning : Default cost configuration isn\'t set.', 'warning');
-	} else if (confValue < 0 || isNaN(confValue)) {
-		$.jnotify('Error : Default cost configuration is invalid.', 'error');
-	}
-}
-
-
-
