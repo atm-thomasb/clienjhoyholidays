@@ -94,69 +94,69 @@ $formSetup = new FormSetup($db);
 
 // Enter here all parameters in your setup page
 
-// Setup conf for selection of an URL
-$item = $formSetup->newItem('CLIENJOYHOLIDAYS_MYPARAM1');
-$item->fieldOverride = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTTP_HOST'];
-$item->cssClass = 'minwidth500';
+//// Setup conf for selection of an URL
+//$item = $formSetup->newItem('CLIENJOYHOLIDAYS_MYPARAM1');
+//$item->fieldOverride = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTTP_HOST'];
+//$item->cssClass = 'minwidth500';
 
-// Setup conf for selection of a simple string input
-$item = $formSetup->newItem('CLIENJOYHOLIDAYS_MYPARAM2');
+// Setup conf for "default trip sheet cost"
+$item = $formSetup->newItem('CLIENJOYHOLIDAYS_DEFAULT_COST');
 $item->defaultFieldValue = 'default value';
+//
+//// Setup conf for selection of a simple textarea input but we replace the text of field title
+//$item = $formSetup->newItem('CLIENJOYHOLIDAYS_MYPARAM3');
+//$item->nameText = $item->getNameText().' more html text ';
+//
+//// Setup conf for a selection of a thirdparty
+//$item = $formSetup->newItem('CLIENJOYHOLIDAYS_MYPARAM4');
+//$item->setAsThirdpartyType();
+//
+//// Setup conf for a selection of a boolean
+//$formSetup->newItem('CLIENJOYHOLIDAYS_MYPARAM5')->setAsYesNo();
+//
+//// Setup conf for a selection of an email template of type thirdparty
+//$formSetup->newItem('CLIENJOYHOLIDAYS_MYPARAM6')->setAsEmailTemplate('thirdparty');
+//
+//// Setup conf for a selection of a secured key
+////$formSetup->newItem('CLIENJOYHOLIDAYS_MYPARAM7')->setAsSecureKey();
+//
+//// Setup conf for a selection of a product
+//$formSetup->newItem('CLIENJOYHOLIDAYS_MYPARAM8')->setAsProduct();
 
-// Setup conf for selection of a simple textarea input but we replace the text of field title
-$item = $formSetup->newItem('CLIENJOYHOLIDAYS_MYPARAM3');
-$item->nameText = $item->getNameText().' more html text ';
-
-// Setup conf for a selection of a thirdparty
-$item = $formSetup->newItem('CLIENJOYHOLIDAYS_MYPARAM4');
-$item->setAsThirdpartyType();
-
-// Setup conf for a selection of a boolean
-$formSetup->newItem('CLIENJOYHOLIDAYS_MYPARAM5')->setAsYesNo();
-
-// Setup conf for a selection of an email template of type thirdparty
-$formSetup->newItem('CLIENJOYHOLIDAYS_MYPARAM6')->setAsEmailTemplate('thirdparty');
-
-// Setup conf for a selection of a secured key
-//$formSetup->newItem('CLIENJOYHOLIDAYS_MYPARAM7')->setAsSecureKey();
-
-// Setup conf for a selection of a product
-$formSetup->newItem('CLIENJOYHOLIDAYS_MYPARAM8')->setAsProduct();
-
-// Add a title for a new section
-$formSetup->newItem('NewSection')->setAsTitle();
-
-$TField = array(
-	'test01' => $langs->trans('test01'),
-	'test02' => $langs->trans('test02'),
-	'test03' => $langs->trans('test03'),
-	'test04' => $langs->trans('test04'),
-	'test05' => $langs->trans('test05'),
-	'test06' => $langs->trans('test06'),
-);
-
-// Setup conf for a simple combo list
-$formSetup->newItem('CLIENJOYHOLIDAYS_MYPARAM9')->setAsSelect($TField);
-
-// Setup conf for a multiselect combo list
-$item = $formSetup->newItem('CLIENJOYHOLIDAYS_MYPARAM10');
-$item->setAsMultiSelect($TField);
-$item->helpText = $langs->transnoentities('CLIENJOYHOLIDAYS_MYPARAM10');
-
-
-
-// Setup conf CLIENJOYHOLIDAYS_MYPARAM10
-$item = $formSetup->newItem('CLIENJOYHOLIDAYS_MYPARAM10');
-$item->setAsColor();
-$item->defaultFieldValue = '#FF0000';
-$item->nameText = $item->getNameText().' more html text ';
-$item->fieldInputOverride = '';
-$item->helpText = $langs->transnoentities('AnHelpMessage');
-//$item->fieldValue = '';
-//$item->fieldAttr = array() ; // fields attribute only for compatible fields like input text
-//$item->fieldOverride = false; // set this var to override field output will override $fieldInputOverride and $fieldOutputOverride too
-//$item->fieldInputOverride = false; // set this var to override field input
-//$item->fieldOutputOverride = false; // set this var to override field output
+//// Add a title for a new section
+//$formSetup->newItem('NewSection')->setAsTitle();
+//
+//$TField = array(
+//	'test01' => $langs->trans('test01'),
+//	'test02' => $langs->trans('test02'),
+//	'test03' => $langs->trans('test03'),
+//	'test04' => $langs->trans('test04'),
+//	'test05' => $langs->trans('test05'),
+//	'test06' => $langs->trans('test06'),
+//);
+//
+//// Setup conf for a simple combo list
+//$formSetup->newItem('CLIENJOYHOLIDAYS_MYPARAM9')->setAsSelect($TField);
+//
+//// Setup conf for a multiselect combo list
+//$item = $formSetup->newItem('CLIENJOYHOLIDAYS_MYPARAM10');
+//$item->setAsMultiSelect($TField);
+//$item->helpText = $langs->transnoentities('CLIENJOYHOLIDAYS_MYPARAM10');
+//
+//
+//
+//// Setup conf CLIENJOYHOLIDAYS_MYPARAM10
+//$item = $formSetup->newItem('CLIENJOYHOLIDAYS_MYPARAM10');
+//$item->setAsColor();
+//$item->defaultFieldValue = '#FF0000';
+//$item->nameText = $item->getNameText().' more html text ';
+//$item->fieldInputOverride = '';
+//$item->helpText = $langs->transnoentities('AnHelpMessage');
+////$item->fieldValue = '';
+////$item->fieldAttr = array() ; // fields attribute only for compatible fields like input text
+////$item->fieldOverride = false; // set this var to override field output will override $fieldInputOverride and $fieldOutputOverride too
+////$item->fieldInputOverride = false; // set this var to override field input
+////$item->fieldOutputOverride = false; // set this var to override field output
 
 
 $setupnotempty += count($formSetup->items);
