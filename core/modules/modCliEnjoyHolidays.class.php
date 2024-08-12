@@ -21,7 +21,6 @@
 /**
  * 	\defgroup   clienjoyholidays     Module CliEnjoyHolidays
  *  \brief      CliEnjoyHolidays module descriptor.
- *
  *  \file       htdocs/clienjoyholidays/core/modules/modCliEnjoyHolidays.class.php
  *  \ingroup    clienjoyholidays
  *  \brief      Description and activation file for module CliEnjoyHolidays
@@ -72,7 +71,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 		$this->editor_url = '';
 
 		// Possible values for version are: 'development', 'experimental', 'dolibarr', 'dolibarr_deprecated', 'experimental_deprecated' or a version string like 'x.y.z'
-		$this->version = '1.2';
+		$this->version = '1.3';
 		// Url to the file with your last numberversion of this module
 		//$this->url_last_version = 'http://www.example.com/versionmodule.txt';
 
@@ -115,11 +114,16 @@ class modCliEnjoyHolidays extends DolibarrModules
 			),
 			// Set here all hooks context managed by module. To find available hook context, make a "grep -r '>initHooks(' *" on source code. You can also set hook context to 'all'
 			'hooks' => array(
-				//   'data' => array(
-				//       'hookcontext1',
-				//       'hookcontext2',
-				//   ),
-				//   'entity' => '0',
+//				'ordercard'
+//				,'ordersuppliercard'
+//				,'supplierorderlist'
+
+				'data' => array(
+				    'ordercard',
+				    'ordersuppliercard',
+					'supplierorderlist'
+				),
+				'entity' => '0',
 			),
 			// Set this to 1 if features of module are opened to external users
 			'moduleforexternal' => 0,

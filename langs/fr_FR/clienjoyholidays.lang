@@ -87,3 +87,7 @@ MyWidget = Widget Enjoy Holidays
 MyWidgetDescription = A neat widget for your holidays
 BoxTitleLastFormulesDeVoyage = Les %s dernières formules de voyages créées
 
+#
+# Hook Business Proposal
+#
+createFormuleDeVoyageFromPropal = Créer formule de voyage
