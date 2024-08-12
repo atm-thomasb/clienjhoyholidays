@@ -37,9 +37,9 @@ if (!$res) {
 
 
 // Request treatment
-$action = GETPOST("action", "alpha");
+$action = GETPOST("action", "alphanohtml");
 if ($action == "getCost") {
-	$destination = GETPOST("destination", "alpha");
+	$destination = GETPOST("destination", "alphanohtml");
 	$response = getDefaultCost($destination);
 	exit(json_encode($response));
 }
@@ -55,7 +55,7 @@ function getDefaultCost(string $destination): array
 
 	$sql = "SELECT cost";
 	$sql .= " FROM " . MAIN_DB_PREFIX . "c_enjoyholidays_country_costs";
-	$sql .= " WHERE country = $destination AND active=1";
+	$sql .= " WHERE country = ".intval($destination)." AND active=1";
 	$resql = $db->query($sql);
 	# Check database error
 	if ($resql) {
