@@ -173,25 +173,24 @@ if (versioncompare(explode('.', DOL_VERSION), array(15)) < 0 && $action == 'upda
 	$formSetup->saveConfFromPost();
 }
 
-// Check cost configuration value
-if (array_key_exists("CLIENJOYHOLIDAYS_DEFAULT_COST", $_POST)){
-	$confValue = $_POST["CLIENJOYHOLIDAYS_DEFAULT_COST"];
+// Check cost configuration value validity
+$confValue = GETPOST("CLIENJOYHOLIDAYS_DEFAULT_COST", "alpha");
 
-	if (($confValue < 0 || !ctype_digit($confValue)) && !($confValue === "")) {
+if ($action == "update") {
+	if( empty($confValue)) {
+		setEventMessage($langs->trans("CliEnjoyHolidaysCostConfigWarning"), 'warnings');
+	} else if(!is_numeric($confValue) || (int)$confValue < 0) {
 		setEventMessage($langs->trans("CliEnjoyHolidaysInvalidCostConfigError"), 'errors');
-	} else {
-		if ($confValue === "") {
-			setEventMessage($langs->trans("CliEnjoyHolidaysCostConfigWarning"), 'warnings');
-		}
-		include DOL_DOCUMENT_ROOT.'/core/actions_setmoduleoptions.inc.php';
+		header("Location: ".$_SERVER["PHP_SELF"].'?action=edit');
+		return;
 	}
 }
 
-
+include DOL_DOCUMENT_ROOT.'/core/actions_setmoduleoptions.inc.php';
 
 if ($action == 'updateMask') {
 	$maskconst = GETPOST('maskconst', 'aZ09');
-	$maskvalue = GETPOST('maskvalue', 'alpha');
+	$maskvalue = GETPOST('maskvalue', 'alphanohtml');
 
 	if ($maskconst && preg_match('/_MASK$/', $maskconst)) {
 		$res = dolibarr_set_const($db, $maskconst, $maskvalue, 'chaine', 0, '', $conf->entity);
@@ -316,8 +315,6 @@ echo '<span class="opacitymedium">'.$langs->trans("CliEnjoyHolidaysSetupPage").'
 
 if ($action == 'edit') {
 	print $formSetup->generateOutput(true);
-	print("<script src='".dol_buildpath('/clienjoyholidays/js/clienjoyholidays.js', 1)."'></script>");
-	print("<script> init('checkConfValue');</script>");
 	print '<br>';
 } elseif (!empty($formSetup->items)) {
 	print $formSetup->generateOutput();
