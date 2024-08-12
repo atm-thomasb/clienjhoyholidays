@@ -37,15 +37,19 @@ if (!$res) {
 
 
 // Request treatment
-$action = GETPOST("action");
+$action = GETPOST("action", "alpha");
 if ($action == "getCost") {
-	$destination = GETPOST("destination");
+	$destination = GETPOST("destination", "alpha");
 	$response = getDefaultCost($destination);
 	exit(json_encode($response));
 }
 
 // Puts default price according to selected country
-function getDefaultCost($destination)
+/**
+ * @param string $destination
+ * @return array|string[]
+ */
+function getDefaultCost(string $destination): array
 {
 	global $db;
 

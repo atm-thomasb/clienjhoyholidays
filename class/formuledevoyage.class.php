@@ -235,7 +235,6 @@ class FormuledeVoyage extends CommonObject
 				}
 			}
 		}
-
 	}
 
 	/**
