@@ -280,7 +280,6 @@ class FormuledeVoyage extends CommonObject
 			if(!is_null($obj->cost)){
 				$this->cost = $obj->cost;
 			} else{
-
 				$this->cost = getDolGlobalString('CLIENJOYHOLIDAYS_DEFAULT_COST');
 			}
 		}

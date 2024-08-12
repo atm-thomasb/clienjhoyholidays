@@ -101,7 +101,7 @@ $formSetup = new FormSetup($db);
 
 // Setup conf for "default trip sheet cost"
 $item = $formSetup->newItem('CLIENJOYHOLIDAYS_DEFAULT_COST');
-$item->defaultFieldValue = 'default value';
+$item->defaultFieldValue = '';
 //
 //// Setup conf for selection of a simple textarea input but we replace the text of field title
 //$item = $formSetup->newItem('CLIENJOYHOLIDAYS_MYPARAM3');
@@ -168,17 +168,29 @@ $dirmodels = array_merge(array('/'), (array) $conf->modules_parts['models']);
 /*
  * Actions
  */
-
 // For retrocompatibility Dolibarr < 15.0
 if (versioncompare(explode('.', DOL_VERSION), array(15)) < 0 && $action == 'update' && !empty($user->admin)) {
 	$formSetup->saveConfFromPost();
+}
+
+// Check cost configuration value validity
+$confValue = GETPOST("CLIENJOYHOLIDAYS_DEFAULT_COST", "alpha");
+
+if ($action == "update") {
+	if( empty($confValue)) {
+		setEventMessage($langs->trans("CliEnjoyHolidaysCostConfigWarning"), 'warnings');
+	} else if(!is_numeric($confValue) || (int)$confValue < 0) {
+		setEventMessage($langs->trans("CliEnjoyHolidaysInvalidCostConfigError"), 'errors');
+		header("Location: ".$_SERVER["PHP_SELF"].'?action=edit');
+		return;
+	}
 }
 
 include DOL_DOCUMENT_ROOT.'/core/actions_setmoduleoptions.inc.php';
 
 if ($action == 'updateMask') {
 	$maskconst = GETPOST('maskconst', 'aZ09');
-	$maskvalue = GETPOST('maskvalue', 'alpha');
+	$maskvalue = GETPOST('maskvalue', 'alphanohtml');
 
 	if ($maskconst && preg_match('/_MASK$/', $maskconst)) {
 		$res = dolibarr_set_const($db, $maskconst, $maskvalue, 'chaine', 0, '', $conf->entity);

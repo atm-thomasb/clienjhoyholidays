@@ -301,7 +301,7 @@ if ($action == 'create') {
 
 	print '</form>';
 
-	//dol_set_focus('input[name="ref"]');
+
 }
 
 // Part to edit record
@@ -336,7 +336,12 @@ if (($id || $ref) && $action == 'edit') {
 	print $form->buttonsSaveCancel();
 
 	print '</form>';
+
 }
+
+// AJAX autofill default cost value
+print("<script src='".dol_buildpath('/clienjoyholidays/js/clienjoyholidays.js', 1)."'></script>");
+print("<script> init('updateCost');</script>");
 
 // Part to show record
 if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'create'))) {
