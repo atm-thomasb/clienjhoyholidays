@@ -247,6 +247,9 @@ class FormuledeVoyage extends CommonObject
 	public function create(User $user, $notrigger = false)
 	{
 		global $langs;
+		var_dump("<pre>");
+		var_dump($this->element);
+		exit();
 
 		// Check parameters
 		if (strlen($this->label)<5) {
@@ -282,6 +285,11 @@ class FormuledeVoyage extends CommonObject
 			} else{
 				$this->cost = getDolGlobalString('CLIENJOYHOLIDAYS_DEFAULT_COST');
 			}
+		}
+
+		// Link object if applicable
+		if (!empty(GETPOST('origin', 'alphanohtml'))){
+			$this->add_object_linked(GETPOST('origin', "alphanohtml"), GETPOST('id_origin', "alphanohtml"));
 		}
 
 		$resultcreate = $this->createCommon($user, $notrigger);
@@ -1258,54 +1266,6 @@ class FormuledeVoyage extends CommonObject
 		dol_syslog(__METHOD__." end", LOG_INFO);
 
 		return $error;
-	}
-
-	function addMoreActionsButtons(){
-		var_dump("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH");exit();
-	}
-
-	/**
-	 * Add options to the order form
-	 *
-	 * @param array $parameters Hook context
-	 * @param Commande $object The current order
-	 * @param string $action The current action
-	 * @param HookManager $hookmanager The current hookmanager
-	 *
-	 * @return int Status
-	 */
-	function formObjectOptions( $parameters, &$object, &$action, $hookmanager )
-	{
-		global $user, $langs, $conf;
-		var_dump("test");exit();
-		if (in_array( 'ordercard', explode( ':', $parameters['context'] ) ) && $object->statut > 0 && $user->hasRight('supplierorderfromorder', 'read')) {
-			$langs->load( 'supplierorderfromorder@supplierorderfromorder' );
-
-			if ($action != 'presend' && isModEnabled('clienjoyholidays')) {
-				?>
-
-				<a id="listeProd" class="butAction" href="<?php
-				if(getDolGlobalInt('INCLUDE_PRODUCT_LINES_WITH_ADEQUATE_STOCK') == 1 )
-				{
-					echo dol_buildpath('/supplierorderfromorder/ordercustomer.php?id=' . $object->id.'&projectid='.$object->fk_project.'&show_stock_no_need=yes',1);
-				}
-				else
-				{
-					echo dol_buildpath('/supplierorderfromorder/ordercustomer.php?id=' . $object->id.'&projectid='.$object->fk_project,1);
-
-				}
-				?>"><?php echo $langs->trans( 'createFormuleDeVoyageFromPropal' ); ?></a>
-
-				<script type="text/javascript">
-					$(document).ready(function () {
-						$('#listeProd').prependTo('div.tabsAction');
-					})
-				</script>
-
-				<?php
-			}
-		}
-		return 0;
 	}
 }
 

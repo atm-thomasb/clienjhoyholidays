@@ -279,6 +279,8 @@ if ($action == 'create') {
 	if ($dol_openinpopup) {
 		print '<input type="hidden" name="dol_openinpopup" value="'.$dol_openinpopup.'">';
 	}
+	print '<input type="hidden" name="origin" value="'.GETPOST("origin", "alphanohtml").'">';
+	print '<input type="hidden" name="id_origin" value="'.GETPOST("id", "alphanohtml").'">';
 
 	print dol_get_fiche_head(array(), '');
 
