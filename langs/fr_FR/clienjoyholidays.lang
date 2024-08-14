@@ -28,7 +28,7 @@ DateDeparture = Date Départ
 DateRoundTrip = Date Arrivée
 TransportMode = Mode de Transport
 EnjoyHelpTextCost = Si non renseigné, un tarif par défaut est enregistré en fonction du pays. Si le pays n'est pas renseigné, un tarif par défaut est utilisé.
-FormuledeVoyages = Formules de Voyage
+FormuleDeVoyages = Formules de Voyage
 
 #
 # Admin page
@@ -61,9 +61,9 @@ CliEnjoyHolidaysAboutPage = Page A propos de CliEnjoyHolidays
 #
 MyPageName = Formulaire
 ErrorShortLabel = Erreur, libellé trop court.
-FormuledeVoyage = Formule de Voyage
-NewObjectFormuledeVoyage = Nouvelle %s
-DeleteFormuledeVoyage = Supprimer Formule de Voyage
+FormuleDeVoyage = Formule de Voyage
+NewObjectFormuleDeVoyage = Nouvelle %s
+DeleteFormuleDeVoyage = Supprimer Formule de Voyage
 Active = Validé
 ErrorFormuleDeVoyageAlreadyExists = Erreur, une Formule de Voyage de même référence existe déjà.
 
@@ -76,8 +76,8 @@ MyPageName = My page name
 #
 # Left Menu
 #
-ListFormuledeVoyage = Liste
-NewFormuledeVoyage = Nouvelle Formule de Voyage
+ListFormuleDeVoyage = Liste
+NewFormuleDeVoyage = Nouvelle Formule de Voyage
 
 
 #

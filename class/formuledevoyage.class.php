@@ -20,7 +20,7 @@
 /**
  * \file        class/formuledevoyage.class.php
  * \ingroup     clienjoyholidays
- * \brief       This file is a CRUD class file for FormuledeVoyage (Create/Read/Update/Delete)
+ * \brief       This file is a CRUD class file for FormuleDeVoyage (Create/Read/Update/Delete)
  */
 
 // Put here all includes required by your class file
@@ -29,9 +29,9 @@ require_once DOL_DOCUMENT_ROOT.'/core/class/commonobject.class.php';
 //require_once DOL_DOCUMENT_ROOT . '/product/class/product.class.php';
 
 /**
- * Class for FormuledeVoyage
+ * Class for FormuleDeVoyage
  */
-class FormuledeVoyage extends CommonObject
+class FormuleDeVoyage extends CommonObject
 {
 	/**
 	 * @var string ID of module.
@@ -41,7 +41,7 @@ class FormuledeVoyage extends CommonObject
 	/**
 	 * @var string ID to identify managed object.
 	 */
-	public $element = 'formuledevoyage';
+	public $element = 'clienjoyholidays_formuledevoyage';
 
 	/**
 	 * @var string Name of table without prefix where object is stored. This is also the key used for extrafields management.
@@ -173,12 +173,12 @@ class FormuledeVoyage extends CommonObject
 	// /**
 	//  * @var string    Name of subtable class that manage subtable lines
 	//  */
-	// public $class_element_line = 'FormuledeVoyageline';
+	// public $class_element_line = 'FormuleDeVoyageline';
 
 	// /**
 	//  * @var array	List of child tables. To test if we can delete object.
 	//  */
-	// protected $childtables = array('mychildtable' => array('name'=>'FormuledeVoyage', 'fk_element'=>'fk_formuledevoyage'));
+	// protected $childtables = array('mychildtable' => array('name'=>'FormuleDeVoyage', 'fk_element'=>'fk_formuledevoyage'));
 
 	// /**
 	//  * @var array    List of child tables. To know object to delete on cascade.
@@ -188,7 +188,7 @@ class FormuledeVoyage extends CommonObject
 	// protected $childtablesoncascade = array('clienjoyholidays_formuledevoyagedet');
 
 	// /**
-	//  * @var FormuledeVoyageLine[]     Array of subtable lines
+	//  * @var FormuleDeVoyageLine[]     Array of subtable lines
 	//  */
 	// public $lines = array();
 
@@ -247,9 +247,6 @@ class FormuledeVoyage extends CommonObject
 	public function create(User $user, $notrigger = false)
 	{
 		global $langs;
-		var_dump("<pre>");
-		var_dump($this->element);
-		exit();
 
 		// Check parameters
 		if (strlen($this->label)<5) {
@@ -287,12 +284,12 @@ class FormuledeVoyage extends CommonObject
 			}
 		}
 
+		$resultcreate = $this->createCommon($user, $notrigger);
+
 		// Link object if applicable
 		if (!empty(GETPOST('origin', 'alphanohtml'))){
-			$this->add_object_linked(GETPOST('origin', "alphanohtml"), GETPOST('id_origin', "alphanohtml"));
+			$this->add_object_linked(GETPOST('origin', "alphanohtml"), GETPOST('origin_id', "int"));
 		}
-
-		$resultcreate = $this->createCommon($user, $notrigger);
 
 		return $resultcreate;
 	}
@@ -799,9 +796,9 @@ class FormuledeVoyage extends CommonObject
 		$datas = [];
 
 		if (getDolGlobalInt('MAIN_OPTIMIZEFORTEXTBROWSER')) {
-			return ['optimize' => $langs->trans("ShowFormuledeVoyage")];
+			return ['optimize' => $langs->trans("ShowFormuleDeVoyage")];
 		}
-		$datas['picto'] = img_picto('', $this->picto).' <u>'.$langs->trans("FormuledeVoyage").'</u>';
+		$datas['picto'] = img_picto('', $this->picto).' <u>'.$langs->trans("FormuleDeVoyage").'</u>';
 		if (isset($this->status)) {
 			$datas['picto'] .= ' '.$this->getLibStatut(5);
 		}
@@ -880,7 +877,7 @@ class FormuledeVoyage extends CommonObject
 		$linkclose = '';
 		if (empty($notooltip)) {
 			if (getDolGlobalInt('MAIN_OPTIMIZEFORTEXTBROWSER')) {
-				$label = $langs->trans("ShowFormuledeVoyage");
+				$label = $langs->trans("ShowFormuleDeVoyage");
 				$linkclose .= ' alt="'.dol_escape_htmltag($label, 1).'"';
 			}
 			$linkclose .= ($label ? ' title="'.dol_escape_htmltag($label, 1).'"' : ' title="tocomplete"');
@@ -1130,7 +1127,7 @@ class FormuledeVoyage extends CommonObject
 	{
 		$this->lines = array();
 
-		$objectline = new FormuledeVoyageLine($this->db);
+		$objectline = new FormuleDeVoyageLine($this->db);
 		$result = $objectline->fetchAll('ASC', 'position', 0, 0, array('customsql'=>'fk_formuledevoyage = '.((int) $this->id)));
 
 		if (is_numeric($result)) {
@@ -1273,11 +1270,11 @@ class FormuledeVoyage extends CommonObject
 require_once DOL_DOCUMENT_ROOT.'/core/class/commonobjectline.class.php';
 
 /**
- * Class FormuledeVoyageLine. You can also remove this and generate a CRUD class for lines objects.
+ * Class FormuleDeVoyageLine. You can also remove this and generate a CRUD class for lines objects.
  */
-class FormuledeVoyageLine extends CommonObjectLine
+class FormuleDeVoyageLine extends CommonObjectLine
 {
-	// To complete with content of an object FormuledeVoyageLine
+	// To complete with content of an object FormuleDeVoyageLine
 	// We should have a field rowid, fk_formuledevoyage and position
 
 	/**

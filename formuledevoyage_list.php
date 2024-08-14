@@ -119,7 +119,7 @@ $pageprev = $page - 1;
 $pagenext = $page + 1;
 
 // Initialize technical objects
-$object = new FormuledeVoyage($db);
+$object = new FormuleDeVoyage($db);
 $extrafields = new ExtraFields($db);
 $diroutputmassaction = $conf->clienjoyholidays->dir_output.'/temp/massgeneration/'.$user->id;
 $hookmanager->initHooks(array($contextpage)); 	// Note that conf->hooks_modules contains array of activated contexes
@@ -258,8 +258,8 @@ if (empty($reshook)) {
 	}
 
 	// Mass actions
-	$objectclass = 'FormuledeVoyage';
-	$objectlabel = 'FormuledeVoyage';
+	$objectclass = 'FormuleDeVoyage';
+	$objectlabel = 'FormuleDeVoyage';
 	$uploaddir = $conf->clienjoyholidays->dir_output;
 	include DOL_DOCUMENT_ROOT.'/core/actions_massactions.inc.php';
 
@@ -277,8 +277,8 @@ $form = new Form($db);
 
 $now = dol_now();
 
-$title = $langs->trans("FormuledeVoyages");
-//$help_url = "EN:Module_FormuledeVoyage|FR:Module_FormuledeVoyage_FR|ES:Módulo_FormuledeVoyage";
+$title = $langs->trans("FormuleDeVoyages");
+//$help_url = "EN:Module_FormuleDeVoyage|FR:Module_FormuleDeVoyage_FR|ES:Módulo_FormuleDeVoyage";
 $help_url = '';
 $morejs = array();
 $morecss = array();
@@ -523,9 +523,9 @@ $newcardbutton .= dolGetButtonTitle($langs->trans('New'), '', 'fa fa-plus-circle
 print_barre_liste($title, $page, $_SERVER["PHP_SELF"], $param, $sortfield, $sortorder, $massactionbutton, $num, $nbtotalofrecords, 'object_'.$object->picto, 0, $newcardbutton, '', $limit, 0, 0, 1);
 
 // Add code for pre mass action (confirmation or email presend form)
-$topicmail = "SendFormuledeVoyageRef";
+$topicmail = "SendFormuleDeVoyageRef";
 $modelmail = "formuledevoyage";
-$objecttmp = new FormuledeVoyage($db);
+$objecttmp = new FormuleDeVoyage($db);
 $trackid = 'xxxx'.$object->id;
 include DOL_DOCUMENT_ROOT.'/core/tpl/massactions_pre.tpl.php';
 

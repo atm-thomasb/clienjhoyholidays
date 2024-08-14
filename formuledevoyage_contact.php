@@ -19,7 +19,7 @@
 /**
  *  \file       formuledevoyage_contact.php
  *  \ingroup    clienjoyholidays
- *  \brief      Tab for contacts linked to FormuledeVoyage
+ *  \brief      Tab for contacts linked to FormuleDeVoyage
  */
 
 // Load Dolibarr environment
@@ -69,7 +69,7 @@ $socid  = GETPOST('socid', 'int');
 $action = GETPOST('action', 'aZ09');
 
 // Initialize technical objects
-$object = new FormuledeVoyage($db);
+$object = new FormuleDeVoyage($db);
 $extrafields = new ExtraFields($db);
 $diroutputmassaction = $conf->clienjoyholidays->dir_output.'/temp/massgeneration/'.$user->id;
 $hookmanager->initHooks(array($object->element.'contact', 'globalcard')); // Note that conf->hooks_modules contains array
@@ -143,7 +143,7 @@ if ($action == 'addcontact' && $permissiontoadd) {
  * View
  */
 
-$title = $langs->trans("FormuledeVoyage")." - ".$langs->trans('ContactsAddresses');
+$title = $langs->trans("FormuleDeVoyage")." - ".$langs->trans('ContactsAddresses');
 //$title = $object->ref." - ".$langs->trans('ContactsAddresses');
 $help_url = '';
 //$help_url='EN:Module_Third_Parties|FR:Module_Tiers|ES:Empresas';
@@ -167,7 +167,7 @@ if ($object->id) {
 	 */
 	$head = formuledevoyagePrepareHead($object);
 
-	print dol_get_fiche_head($head, 'contact', $langs->trans("FormuledeVoyage"), -1, $object->picto);
+	print dol_get_fiche_head($head, 'contact', $langs->trans("FormuleDeVoyage"), -1, $object->picto);
 
 	$linkback = '<a href="'.dol_buildpath('/clienjoyholidays/formuledevoyage_list.php', 1).'?restore_lastsearch_values=1'.(!empty($socid) ? '&socid='.$socid : '').'">'.$langs->trans("BackToList").'</a>';
 

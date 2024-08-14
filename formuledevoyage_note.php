@@ -19,7 +19,7 @@
 /**
  *  \file       formuledevoyage_note.php
  *  \ingroup    clienjoyholidays
- *  \brief      Tab for notes on FormuledeVoyage
+ *  \brief      Tab for notes on FormuleDeVoyage
  */
 
 
@@ -90,7 +90,7 @@ $cancel     = GETPOST('cancel', 'aZ09');
 $backtopage = GETPOST('backtopage', 'alpha');
 
 // Initialize technical objects
-$object = new FormuledeVoyage($db);
+$object = new FormuleDeVoyage($db);
 $extrafields = new ExtraFields($db);
 $diroutputmassaction = $conf->clienjoyholidays->dir_output.'/temp/massgeneration/'.$user->id;
 $hookmanager->initHooks(array($object->element.'note', 'globalcard')); // Note that conf->hooks_modules contains array
@@ -150,7 +150,7 @@ if (empty($reshook)) {
 
 $form = new Form($db);
 
-$title = $langs->trans('FormuledeVoyage').' - '.$langs->trans("Notes");
+$title = $langs->trans('FormuleDeVoyage').' - '.$langs->trans("Notes");
 //$title = $object->ref." - ".$langs->trans("Notes");
 $help_url = '';
 //$help_url='EN:Customers_Orders|FR:Commandes_Clients|ES:Pedidos de clientes';
@@ -162,7 +162,7 @@ if ($id > 0 || !empty($ref)) {
 
 	$head = formuledevoyagePrepareHead($object);
 
-	print dol_get_fiche_head($head, 'note', $langs->trans("FormuledeVoyage"), -1, $object->picto);
+	print dol_get_fiche_head($head, 'note', $langs->trans("FormuleDeVoyage"), -1, $object->picto);
 
 	// Object card
 	// ------------------------------------------------------------

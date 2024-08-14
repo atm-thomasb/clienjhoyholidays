@@ -76,7 +76,7 @@ class box_enjoyholidays extends ModeleBoxes
 		$this->max = $max;
 		include_once DOL_DOCUMENT_ROOT.'/custom/clienjoyholidays/class/formuledevoyage.class.php';
 
-		$formuledevoyagestatic = new FormuledeVoyage($this->db);
+		$formuledevoyagestatic = new FormuleDeVoyage($this->db);
 		//$societestatic = new Societe($this->db);
 		$userstatic = new User($this->db);
 

@@ -19,7 +19,7 @@
 /**
  *  \file       formuledevoyage_document.php
  *  \ingroup    clienjoyholidays
- *  \brief      Tab for documents linked to FormuledeVoyage
+ *  \brief      Tab for documents linked to FormuleDeVoyage
  */
 
 // General defined Options
@@ -110,7 +110,7 @@ if (!$sortfield) {
 //if (! $sortfield) $sortfield="position_name";
 
 // Initialize technical objects
-$object = new FormuledeVoyage($db);
+$object = new FormuleDeVoyage($db);
 $extrafields = new ExtraFields($db);
 $diroutputmassaction = $conf->clienjoyholidays->dir_output.'/temp/massgeneration/'.$user->id;
 $hookmanager->initHooks(array($object->element.'document', 'globalcard')); // Note that conf->hooks_modules contains array
@@ -169,7 +169,7 @@ $form = new Form($db);
 
 // Header
 // ------
-$title = $langs->trans("FormuledeVoyage")." - ".$langs->trans("Files");
+$title = $langs->trans("FormuleDeVoyage")." - ".$langs->trans("Files");
 //$title = $object->ref." - ".$langs->trans("Files");
 $help_url = '';
 //Example $help_url='EN:Module_Third_Parties|FR:Module_Tiers|ES:Empresas';
@@ -178,7 +178,7 @@ llxHeader('', $title, $help_url, '', 0, 0, '', '', '', 'mod-clienjoyholidays pag
 // Show tabs
 $head = formuledevoyagePrepareHead($object);
 
-print dol_get_fiche_head($head, 'document', $langs->trans("FormuledeVoyage"), -1, $object->picto);
+print dol_get_fiche_head($head, 'document', $langs->trans("FormuleDeVoyage"), -1, $object->picto);
 
 
 // Build file list
