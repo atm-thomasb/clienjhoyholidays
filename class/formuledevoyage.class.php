@@ -36,7 +36,7 @@ class FormuleDeVoyage extends CommonObject
 	/**
 	 * @var string ID of module.
 	 */
-	public $module = 'clienjoyholidays';
+	public $module = '';
 
 	/**
 	 * @var string ID to identify managed object.
@@ -554,6 +554,13 @@ class FormuleDeVoyage extends CommonObject
 	 */
 	public function delete(User $user, $notrigger = false)
 	{
+		if($this->fetchObjectLinked()) {
+			$objectsToDelete = $this->linkedObjects["propal"];
+			$this->deleteObjectLinked('', 'clienjoyholidays_formuledevoyage', $this->id, 'propal');
+			foreach ($objectsToDelete as $object) {
+				$object->delete($user);
+			}
+		}
 		return $this->deleteCommon($user, $notrigger);
 		//return $this->deleteCommon($user, $notrigger, 1);
 	}

@@ -259,7 +259,6 @@ llxHeader('', $title, $help_url, '', 0, 0, '', '', '', 'mod-clienjoyholidays pag
 // Part to create
 if ($action == 'create') {
 
-	var_dump("test");
 	if (empty($permissiontoadd)) {
 		accessforbidden('NotEnoughPermissions', 0, 1);
 	}
@@ -626,8 +625,6 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 		}
 
 		// Show links to link elements
-		$object->fetchObjectLinked(null, '', null, 'clienjoyholidays_formuledevoyage', 'OR', 1,'sourcetype', 1);
-
 		$linktoelem = $form->showLinkToObjectBlock($object, null, array('formuledevoyage'));
 		$somethingshown = $form->showLinkedObjectBlock($object, $linktoelem);
 

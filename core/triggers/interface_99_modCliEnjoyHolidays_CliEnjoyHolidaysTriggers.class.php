@@ -90,7 +90,7 @@ class InterfaceCliEnjoyHolidaysTriggers extends DolibarrTriggers
 	 */
 	public function runTrigger($action, $object, User $user, Translate $langs, Conf $conf)
 	{
-		if (!isModEnabled('mymodule')) {
+		if (!isModEnabled('clienjoyholidays')) {
 			return 0; // If module is not enabled, we do nothing
 		}
 
@@ -121,11 +121,7 @@ class InterfaceCliEnjoyHolidaysTriggers extends DolibarrTriggers
 			// Actions
 			//case 'ACTION_MODIFY':
 			//case 'ACTION_CREATE':
-			case 'ACTION_DELETE':
-				var_dump("test");
-				exit();
-				return 1;
-
+			//case 'ACTION_DELETE':
 
 			// Groups
 			//case 'USERGROUP_CREATE':
@@ -195,9 +191,17 @@ class InterfaceCliEnjoyHolidaysTriggers extends DolibarrTriggers
 			//case 'PROPAL_CLOSE_SIGNED':
 			//case 'PROPAL_CLOSE_REFUSED':
 			case 'PROPAL_DELETE':
-				var_dump("test ");
-				//exit();
-				return 1;
+				dol_syslog("Trigger '" . $this->name . "' for action '$action' launched by " . __FILE__ . ". id=" . $object->id );
+				if($object->fetchObjectLinked()){
+					$objectsToDelete = $object->linkedObjects["clienjoyholidays_formuledevoyage"];
+					$object->deleteObjectLinked('', 'propal', $object->id, 'clienjoyholidays_formuledevoyage');
+					foreach ($objectsToDelete as $object) {
+						$object->delete($user);
+					}
+					return 1;
+				}
+				return 0;
+
 			//case 'LINEPROPAL_INSERT':
 			//case 'LINEPROPAL_UPDATE':
 			//case 'LINEPROPAL_DELETE':
