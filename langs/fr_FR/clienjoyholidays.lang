@@ -92,3 +92,8 @@ BoxTitleLastFormulesDeVoyage = Les %s dernières formules de voyages créées
 # Hook Business Proposal
 #
 createFormuleDeVoyageFromPropal = Créer formule de voyage
+
+#
+# PDF
+#
+DocModelCyanCliEnjoyHolidaysDescription = Un modèle de proposition complet pour Formule de Voyage

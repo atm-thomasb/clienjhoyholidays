@@ -30,24 +30,11 @@
  *    \brief      File of Class to generate PDF proposal with Cyan template
  */
 
-namespace clienjoyholidays\doc;
-use Account;
-use DoliDB;
-use HookManager;
-use ModelePDFPropales;
-use Product;
-use Propal;
-use Propalmergepdfproduct;
-use TCPDF;
-use Translate;
-use User;
-
 require_once DOL_DOCUMENT_ROOT . '/core/modules/propale/modules_propale.php';
 require_once DOL_DOCUMENT_ROOT . '/product/class/product.class.php';
 require_once DOL_DOCUMENT_ROOT . '/core/lib/company.lib.php';
 require_once DOL_DOCUMENT_ROOT . '/core/lib/functions2.lib.php';
 require_once DOL_DOCUMENT_ROOT . '/core/lib/pdf.lib.php';
-
 
 /**
  *    Class to generate PDF proposal Cyan
@@ -105,7 +92,7 @@ class pdf_cyan_clienjoyholidays extends ModelePDFPropales
 
 		$this->db = $db;
 		$this->name = "cyan_clienjoyholidays";
-		$this->description = $langs->trans('DocModelCyanDescription');
+		$this->description = $langs->trans('DocModelCyanCliEnjoyHolidaysDescription');
 		$this->update_main_doc_field = 1; // Save the name of generated file as the main doc when generating a doc with this template
 
 		// Dimension page
@@ -1795,6 +1782,13 @@ class pdf_cyan_clienjoyholidays extends ModelePDFPropales
 			$pdf->SetXY($posx + 2, $posy);
 			$pdf->MultiCell($widthrecbox, 4, $carac_client, 0, $ltrdirection);
 		}
+
+		$posx = $pdf->getX();
+		$posy = $pdf->getY();
+		$pdf->setXY($posx,$posy+2);
+		$pdf->SetTextColor(0,0,200);
+		$pdf->SetFont('', '', $default_font_size + 2);
+		$pdf->MultiCell($w, 4, "TESTU", '', 'R');
 
 		$pdf->SetTextColor(0, 0, 0);
 		return $top_shift;
