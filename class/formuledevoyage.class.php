@@ -561,6 +561,7 @@ class FormuleDeVoyage extends CommonObject
 			foreach ($objectsToDelete as $object) {
 				if($object->delete($user)<0) {
 					$this->errors = "ErrorDeleteObjectLinked";
+					return -1;
 				}
 			}
 		}

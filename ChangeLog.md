@@ -3,6 +3,7 @@
 ## 1.3
 - NEW: create a travel from a propal + delete propal or travel if they are linked - *16/08/2024 *- 1.3
 
+## 1.2.1
 - FIX: FormuledeVoyage renamed everywhere to FormuleDeVoyage for consistency - *16/08/2024* - 1.3
 
 ## 1.2
