@@ -287,8 +287,9 @@ class FormuleDeVoyage extends CommonObject
 		$resultcreate = $this->createCommon($user, $notrigger);
 
 		// Link object if applicable
-		if (!empty(GETPOST('origin', 'alphanohtml'))){
-			$this->add_object_linked(GETPOST('origin', "alphanohtml"), GETPOST('origin_id', "int"));
+		$PostLink = GETPOST('origin', 'alphanohtml');
+		if (!empty($PostLink)){
+			$this->add_object_linked($PostLink, GETPOST('origin_id', "int"));
 		}
 
 		return $resultcreate;
@@ -554,11 +555,14 @@ class FormuleDeVoyage extends CommonObject
 	 */
 	public function delete(User $user, $notrigger = false)
 	{
-		if($this->fetchObjectLinked()) {
+		if($this->fetchObjectLinked(null,"propal")) {
 			$objectsToDelete = $this->linkedObjects["propal"];
 			$this->deleteObjectLinked('', 'clienjoyholidays_formuledevoyage', $this->id, 'propal');
 			foreach ($objectsToDelete as $object) {
-				$object->delete($user);
+				if($object->delete($user)<0) {
+					$this->errors = "ErrorDeleteObjectLinked";
+					return -1;
+				}
 			}
 		}
 		return $this->deleteCommon($user, $notrigger);

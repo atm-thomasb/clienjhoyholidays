@@ -196,7 +196,9 @@ class InterfaceCliEnjoyHolidaysTriggers extends DolibarrTriggers
 					$objectsToDelete = $object->linkedObjects["clienjoyholidays_formuledevoyage"];
 					$object->deleteObjectLinked('', 'propal', $object->id, 'clienjoyholidays_formuledevoyage');
 					foreach ($objectsToDelete as $object) {
-						$object->delete($user);
+						if($object->delete($user)<0) {
+							$this->errors = "ErrorDeleteObjectLinked";
+						}
 					}
 					return 1;
 				}
