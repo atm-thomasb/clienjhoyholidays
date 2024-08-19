@@ -475,7 +475,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 		include_once DOL_DOCUMENT_ROOT.'/core/class/extrafields.class.php';
 		$extrafields = new ExtraFields($this->db);
 		$result1=$extrafields->addExtraField('clienjoyholidays_note', "Mention spécifique", 'text', 1,  3, 'propal',   0, 0, '', '', 1, '', 0, 0, '', '', 'clienjoyholidays@clienjoyholidays', 'isModEnabled("clienjoyholidays")');
-		$result2=$extrafields->addExtraField('clienjoyholidays_manager', "Responsable", 'User:user', 1, 10, 'propal',      0, 0, '', '', 1, '', 0, 0, '', '', 'clienjoyholidays@clienjoyholidays', 'isModEnabled("clienjoyholidays")');
+		$result2=$extrafields->addExtraField('clienjoyholidays_manager', "Responsable", 'User:user', 1, 10, 'propaldet',      0, 0, '', '', 1, '', 0, 0, '', '', 'clienjoyholidays@clienjoyholidays', 'isModEnabled("clienjoyholidays")');
 		//$result3=$extrafields->addExtraField('clienjoyholidays_myattr3', "New Attr 3 label", 'varchar', 1, 10, 'bank_account', 0, 0, '', '', 1, '', 0, 0, '', '', 'clienjoyholidays@clienjoyholidays', 'isModEnabled("clienjoyholidays")');
 		//$result4=$extrafields->addExtraField('clienjoyholidays_myattr4', "New Attr 4 label", 'select',  1,  3, 'thirdparty',   0, 1, '', array('options'=>array('code1'=>'Val1','code2'=>'Val2','code3'=>'Val3')), 1,'', 0, 0, '', '', 'clienjoyholidays@clienjoyholidays', 'isModEnabled("clienjoyholidays")');
 		//$result5=$extrafields->addExtraField('clienjoyholidays_myattr5', "New Attr 5 label", 'text',    1, 10, 'user',         0, 0, '', '', 1, '', 0, 0, '', '', 'clienjoyholidays@clienjoyholidays', 'isModEnabled("clienjoyholidays")');
