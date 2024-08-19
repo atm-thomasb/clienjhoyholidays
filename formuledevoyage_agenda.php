@@ -19,7 +19,7 @@
 /**
  *  \file       formuledevoyage_agenda.php
  *  \ingroup    clienjoyholidays
- *  \brief      Tab of events on FormuledeVoyage
+ *  \brief      Tab of events on FormuleDeVoyage
  */
 
 //if (! defined('NOREQUIREDB'))              define('NOREQUIREDB', '1');				// Do not create database handler $db
@@ -119,7 +119,7 @@ if (!$sortorder) {
 }
 
 // Initialize technical objects
-$object = new FormuledeVoyage($db);
+$object = new FormuleDeVoyage($db);
 $extrafields = new ExtraFields($db);
 $diroutputmassaction = $conf->clienjoyholidays->dir_output.'/temp/massgeneration/'.$user->id;
 $hookmanager->initHooks(array($object->element.'agenda', 'globalcard')); // Note that conf->hooks_modules contains array
@@ -189,7 +189,7 @@ if (empty($reshook)) {
 $form = new Form($db);
 
 if ($object->id > 0) {
-	$title = $langs->trans("FormuledeVoyage")." - ".$langs->trans('Agenda');
+	$title = $langs->trans("FormuleDeVoyage")." - ".$langs->trans('Agenda');
 	//$title = $object->ref." - ".$langs->trans("Agenda");
 	$help_url = 'EN:Module_Agenda_En|DE:Modul_Terminplanung';
 
@@ -201,7 +201,7 @@ if ($object->id > 0) {
 	$head = formuledevoyagePrepareHead($object);
 
 
-	print dol_get_fiche_head($head, 'agenda', $langs->trans("FormuledeVoyage"), -1, $object->picto);
+	print dol_get_fiche_head($head, 'agenda', $langs->trans("FormuleDeVoyage"), -1, $object->picto);
 
 	// Object card
 	// ------------------------------------------------------------

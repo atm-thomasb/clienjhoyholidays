@@ -84,7 +84,7 @@ dol_include_once('/clienjoyholidays/class/formuledevoyage.class.php');
 dol_include_once('/clienjoyholidays/lib/clienjoyholidays_formuledevoyage.lib.php');
 
 // Load translation files required by the page
-$langs->loadLangs(array("clienjoyholidays@clienjoyholidays", "other"));
+$langs->loadLangs(array("clienjoyholidays@clienjoyholidays", "propal", "other"));
 
 // Get parameters
 $id = GETPOST('id', 'int');
@@ -106,7 +106,7 @@ if (!empty($backtopagejsfields)) {
 }
 
 // Initialize technical objects
-$object = new FormuledeVoyage($db);
+$object = new FormuleDeVoyage($db);
 $extrafields = new ExtraFields($db);
 $diroutputmassaction = $conf->clienjoyholidays->dir_output.'/temp/massgeneration/'.$user->id;
 $hookmanager->initHooks(array($object->element.'card', 'globalcard')); // Note that conf->hooks_modules contains array
@@ -231,10 +231,10 @@ $form = new Form($db);
 $formfile = new FormFile($db);
 $formproject = new FormProjets($db);
 
-$title = $langs->trans("FormuledeVoyage")." - ".$langs->trans('Card');
+$title = $langs->trans("FormuleDeVoyage")." - ".$langs->trans('Card');
 //$title = $object->ref." - ".$langs->trans('Card');
 if ($action == 'create') {
-	$title = $langs->trans("NewObjectFormuledeVoyage", $langs->transnoentitiesnoconv("FormuledeVoyage"));
+	$title = $langs->trans("NewObjectFormuleDeVoyage", $langs->transnoentitiesnoconv("FormuleDeVoyage"));
 }
 $help_url = '';
 
@@ -258,6 +258,7 @@ llxHeader('', $title, $help_url, '', 0, 0, '', '', '', 'mod-clienjoyholidays pag
 
 // Part to create
 if ($action == 'create') {
+
 	if (empty($permissiontoadd)) {
 		accessforbidden('NotEnoughPermissions', 0, 1);
 	}
@@ -279,6 +280,9 @@ if ($action == 'create') {
 	if ($dol_openinpopup) {
 		print '<input type="hidden" name="dol_openinpopup" value="'.$dol_openinpopup.'">';
 	}
+
+	print '<input type="hidden" name="origin" value="'.GETPOST("origin", "alphanohtml").'">';
+	print '<input type="hidden" name="origin_id" value='.GETPOST("origin_id", "alphanohtml").'>';
 
 	print dol_get_fiche_head(array(), '');
 
@@ -306,7 +310,7 @@ if ($action == 'create') {
 
 // Part to edit record
 if (($id || $ref) && $action == 'edit') {
-	print load_fiche_titre($langs->trans("FormuledeVoyage"), '', 'object_'.$object->picto);
+	print load_fiche_titre($langs->trans("FormuleDeVoyage"), '', 'object_'.$object->picto);
 
 	print '<form method="POST" action="'.$_SERVER["PHP_SELF"].'">';
 	print '<input type="hidden" name="token" value="'.newToken().'">';
@@ -347,13 +351,13 @@ print("<script> init('updateCost');</script>");
 if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'create'))) {
 	$head = formuledevoyagePrepareHead($object);
 
-	print dol_get_fiche_head($head, 'card', $langs->trans("FormuledeVoyage"), -1, $object->picto, 0, '', '', 0, '', 1);
+	print dol_get_fiche_head($head, 'card', $langs->trans("FormuleDeVoyage"), -1, $object->picto, 0, '', '', 0, '', 1);
 
 	$formconfirm = '';
 
 	// Confirmation to delete (using preloaded confirm popup)
 	if (($action == 'delete' || ($conf->use_javascript_ajax && empty($conf->dol_use_jmobile))) && $permissiontodelete) {
-		$formconfirm = $form->formconfirm($_SERVER["PHP_SELF"].'?id='.$object->id, $langs->trans('DeleteFormuledeVoyage'), $langs->trans('ConfirmDeleteObject'), 'confirm_delete', '', 0, 'action-delete');
+		$formconfirm = $form->formconfirm($_SERVER["PHP_SELF"].'?id='.$object->id, $langs->trans('DeleteFormuleDeVoyage'), $langs->trans('ConfirmDeleteObject'), 'confirm_delete', '', 0, 'action-delete');
 	}
 	// Confirmation to delete line
 	if ($action == 'deleteline') {
@@ -369,7 +373,7 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 
 	// Confirmation of action xxxx (You can use it for xxx = 'close', xxx = 'reopen', ...)
 	if ($action == 'xxx') {
-		$text = $langs->trans('ConfirmActionFormuledeVoyage', $object->ref);
+		$text = $langs->trans('ConfirmActionFormuleDeVoyage', $object->ref);
 		/*if (isModEnabled('notification'))
 		{
 			require_once DOL_DOCUMENT_ROOT . '/core/class/notify.class.php';
@@ -617,13 +621,12 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 			$urlsource = $_SERVER["PHP_SELF"]."?id=".$object->id;
 			$genallowed = $permissiontoread; // If you can read, you can build the PDF to read content
 			$delallowed = $permissiontoadd; // If you can create/edit, you can remove a file on card
-			print $formfile->showdocuments('clienjoyholidays:FormuledeVoyage', $object->element.'/'.$objref, $filedir, $urlsource, $genallowed, $delallowed, $object->model_pdf, 1, 0, 0, 28, 0, '', '', '', $langs->defaultlang);
+			print $formfile->showdocuments('clienjoyholidays:FormuleDeVoyage', $object->element.'/'.$objref, $filedir, $urlsource, $genallowed, $delallowed, $object->model_pdf, 1, 0, 0, 28, 0, '', '', '', $langs->defaultlang);
 		}
 
 		// Show links to link elements
 		$linktoelem = $form->showLinkToObjectBlock($object, null, array('formuledevoyage'));
 		$somethingshown = $form->showLinkedObjectBlock($object, $linktoelem);
-
 
 		print '</div><div class="fichehalfright">';
 

@@ -95,7 +95,7 @@ __ end table for object TESTOBJECT
 |===
 __ end table for object TESTOBJECT
 
-=== Table of fields with properties for object *FormuledeVoyage* : 
+=== Table of fields with properties for object *FormuleDeVoyage* :
 [options='header',grid=rows,frame=topbot,width=100%,caption=Organisation]
 |===
 |code|type|label|enabled|position|notnull|visible|noteditable|index|default|foreignkey|arrayofkeyval|alwayseditable|validate|searchall|comment|isameasure|css|cssview|csslist|help|showoncombobox|picto
@@ -118,9 +118,9 @@ __ end table for object TESTOBJECT
 |*"model_pdf"*||||1010|-1|||||||||||||||||
 |*"status"*||||2000|1|||||||||||||||||
 |===
-__ end table for object FormuledeVoyage
+__ end table for object FormuleDeVoyage
 
-=== Table of fields with properties for object *FormuledeVoyage* : 
+=== Table of fields with properties for object *FormuleDeVoyage* :
 [options='header',grid=rows,frame=topbot,width=100%,caption=Organisation]
 |===
 |code|type|label|enabled|position|notnull|visible|noteditable|index|default|foreignkey|arrayofkeyval|alwayseditable|validate|searchall|comment|isameasure|css|cssview|csslist|help|showoncombobox|picto
@@ -146,9 +146,9 @@ __ end table for object FormuledeVoyage
 |*"model_pdf"*||||1010|-1|||||||||||||||||
 |*"status"*||||2000|1|||||||||||||||||
 |===
-__ end table for object FormuledeVoyage
+__ end table for object FormuleDeVoyage
 
-=== Table of fields with properties for object *FormuledeVoyage* : 
+=== Table of fields with properties for object *FormuleDeVoyage* :
 [options='header',grid=rows,frame=topbot,width=100%,caption=Organisation]
 |===
 |code|type|label|enabled|position|notnull|visible|noteditable|index|default|foreignkey|arrayofkeyval|alwayseditable|validate|searchall|comment|isameasure|css|cssview|csslist|help|showoncombobox|picto
@@ -171,9 +171,9 @@ __ end table for object FormuledeVoyage
 |*"model_pdf"*||||1010|-1|||||||||||||||||
 |*"status"*||||2000|1|||||||||||||||||
 |===
-__ end table for object FormuledeVoyage
+__ end table for object FormuleDeVoyage
 
-=== Table of fields with properties for object *FormuledeVoyage* : 
+=== Table of fields with properties for object *FormuleDeVoyage* :
 [options='header',grid=rows,frame=topbot,width=100%,caption=Organisation]
 |===
 |code|type|label|enabled|position|notnull|visible|noteditable|index|default|foreignkey|arrayofkeyval|alwayseditable|validate|searchall|comment|isameasure|css|cssview|csslist|help|showoncombobox|picto
@@ -196,9 +196,9 @@ __ end table for object FormuledeVoyage
 |*"model_pdf"*||||1010|-1|||||||||||||||||
 |*"status"*||||2000|1|||||||||||||||||
 |===
-__ end table for object FormuledeVoyage
+__ end table for object FormuleDeVoyage
 
-=== Table of fields with properties for object *FormuledeVoyage* : 
+=== Table of fields with properties for object *FormuleDeVoyage* :
 [options='header',grid=rows,frame=topbot,width=100%,caption=Organisation]
 |===
 |code|type|label|enabled|position|notnull|visible|noteditable|index|default|foreignkey|arrayofkeyval|alwayseditable|validate|searchall|comment|isameasure|css|cssview|csslist|help|showoncombobox|picto
@@ -211,7 +211,7 @@ __ end table for object FormuledeVoyage
 |*"dateroundtrip"*||||50|0|||||||||||||||||
 |*"transportmode"*||||60|0|||||||||||||||||
 |===
-__ end table for object FormuledeVoyage
+__ end table for object FormuleDeVoyage
 
 
 __DATA_SPECIFICATION__

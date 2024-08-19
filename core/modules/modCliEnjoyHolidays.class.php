@@ -21,7 +21,6 @@
 /**
  * 	\defgroup   clienjoyholidays     Module CliEnjoyHolidays
  *  \brief      CliEnjoyHolidays module descriptor.
- *
  *  \file       htdocs/clienjoyholidays/core/modules/modCliEnjoyHolidays.class.php
  *  \ingroup    clienjoyholidays
  *  \brief      Description and activation file for module CliEnjoyHolidays
@@ -72,7 +71,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 		$this->editor_url = '';
 
 		// Possible values for version are: 'development', 'experimental', 'dolibarr', 'dolibarr_deprecated', 'experimental_deprecated' or a version string like 'x.y.z'
-		$this->version = '1.2';
+		$this->version = '1.3';
 		// Url to the file with your last numberversion of this module
 		//$this->url_last_version = 'http://www.example.com/versionmodule.txt';
 
@@ -88,7 +87,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 		// Define some features supported by module (triggers, login, substitutions, menus, css, etc...)
 		$this->module_parts = array(
 			// Set this to 1 if module has its own trigger directory (core/triggers)
-			'triggers' => 0,
+			'triggers' => 1,
 			// Set this to 1 if module has its own login method file (core/login)
 			'login' => 0,
 			// Set this to 1 if module has its own substitution function file (core/substitutions)
@@ -115,11 +114,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 			),
 			// Set here all hooks context managed by module. To find available hook context, make a "grep -r '>initHooks(' *" on source code. You can also set hook context to 'all'
 			'hooks' => array(
-				//   'data' => array(
-				//       'hookcontext1',
-				//       'hookcontext2',
-				//   ),
-				//   'entity' => '0',
+				'propalcard'
 			),
 			// Set this to 1 if features of module are opened to external users
 			'moduleforexternal' => 0,
@@ -277,7 +272,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 			//      'label' => 'MyJob label',
 			//      'jobtype' => 'method',
 			//      'class' => '/clienjoyholidays/class/formuledevoyage.class.php',
-			//      'objectname' => 'FormuledeVoyage',
+			//      'objectname' => 'FormuleDeVoyage',
 			//      'method' => 'doScheduledJob',
 			//      'parameters' => '',
 			//      'comment' => 'Comment',
@@ -343,7 +338,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 		$this->menu[$r++]=array(
 			 'fk_menu' => 'fk_mainmenu=clienjoyholidays',
 			 'type' => 'left',
-			 'titre' => 'FormuledeVoyage',
+			 'titre' => 'FormuleDeVoyage',
 			 'mainmenu' => 'clienjoyholidays',
 			 'leftmenu' => 'formuledevoyage',
 			 'url' => '/clienjoyholidays/formuledevoyage_list.php',
@@ -360,7 +355,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 		$this->menu[$r++]=array(
 			 'fk_menu' => 'fk_mainmenu=clienjoyholidays,fk_leftmenu=formuledevoyage',
 			 'type' => 'left',
-			 'titre' => 'NewFormuledeVoyage',
+			 'titre' => 'NewFormuleDeVoyage',
 			 'mainmenu' => 'clienjoyholidays',
 			 'leftmenu' => 'clienjoyholidays_formuledevoyage_new',
 			 'url' => '/clienjoyholidays/formuledevoyage_card.php?action=create',
@@ -376,7 +371,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 		$this->menu[$r++]=array(
 			'fk_menu' => 'fk_mainmenu=clienjoyholidays,fk_leftmenu=formuledevoyage',
 			'type' => 'left',
-			'titre' => 'ListFormuledeVoyage',
+			'titre' => 'ListFormuleDeVoyage',
 			'mainmenu' => 'clienjoyholidays',
 			'leftmenu' => 'clienjoyholidays_formuledevoyage_list',
 			'url' => '/clienjoyholidays/formuledevoyage_list.php',
@@ -396,14 +391,14 @@ class modCliEnjoyHolidays extends DolibarrModules
 		/*
 		$langs->load("clienjoyholidays@clienjoyholidays");
 		$this->export_code[$r]=$this->rights_class.'_'.$r;
-		$this->export_label[$r]='FormuledeVoyageLines';	// Translation key (used only if key ExportDataset_xxx_z not found)
+		$this->export_label[$r]='FormuleDeVoyageLines';	// Translation key (used only if key ExportDataset_xxx_z not found)
 		$this->export_icon[$r]='formuledevoyage@clienjoyholidays';
 		// Define $this->export_fields_array, $this->export_TypeFields_array and $this->export_entities_array
-		$keyforclass = 'FormuledeVoyage'; $keyforclassfile='/clienjoyholidays/class/formuledevoyage.class.php'; $keyforelement='formuledevoyage@clienjoyholidays';
+		$keyforclass = 'FormuleDeVoyage'; $keyforclassfile='/clienjoyholidays/class/formuledevoyage.class.php'; $keyforelement='formuledevoyage@clienjoyholidays';
 		include DOL_DOCUMENT_ROOT.'/core/commonfieldsinexport.inc.php';
 		//$this->export_fields_array[$r]['t.fieldtoadd']='FieldToAdd'; $this->export_TypeFields_array[$r]['t.fieldtoadd']='Text';
 		//unset($this->export_fields_array[$r]['t.fieldtoremove']);
-		//$keyforclass = 'FormuledeVoyageLine'; $keyforclassfile='/clienjoyholidays/class/formuledevoyage.class.php'; $keyforelement='formuledevoyageline@clienjoyholidays'; $keyforalias='tl';
+		//$keyforclass = 'FormuleDeVoyageLine'; $keyforclassfile='/clienjoyholidays/class/formuledevoyage.class.php'; $keyforelement='formuledevoyageline@clienjoyholidays'; $keyforalias='tl';
 		//include DOL_DOCUMENT_ROOT.'/core/commonfieldsinexport.inc.php';
 		$keyforselect='formuledevoyage'; $keyforaliasextra='extra'; $keyforelement='formuledevoyage@clienjoyholidays';
 		include DOL_DOCUMENT_ROOT.'/core/extrafieldsinexport.inc.php';
@@ -427,12 +422,12 @@ class modCliEnjoyHolidays extends DolibarrModules
 		/*
 		$langs->load("clienjoyholidays@clienjoyholidays");
 		$this->import_code[$r]=$this->rights_class.'_'.$r;
-		$this->import_label[$r]='FormuledeVoyageLines';	// Translation key (used only if key ExportDataset_xxx_z not found)
+		$this->import_label[$r]='FormuleDeVoyageLines';	// Translation key (used only if key ExportDataset_xxx_z not found)
 		$this->import_icon[$r]='formuledevoyage@clienjoyholidays';
 		$this->import_tables_array[$r] = array('t' => MAIN_DB_PREFIX.'clienjoyholidays_formuledevoyage', 'extra' => MAIN_DB_PREFIX.'clienjoyholidays_formuledevoyage_extrafields');
 		$this->import_tables_creator_array[$r] = array('t' => 'fk_user_author'); // Fields to store import user id
 		$import_sample = array();
-		$keyforclass = 'FormuledeVoyage'; $keyforclassfile='/clienjoyholidays/class/formuledevoyage.class.php'; $keyforelement='formuledevoyage@clienjoyholidays';
+		$keyforclass = 'FormuleDeVoyage'; $keyforclassfile='/clienjoyholidays/class/formuledevoyage.class.php'; $keyforelement='formuledevoyage@clienjoyholidays';
 		include DOL_DOCUMENT_ROOT.'/core/commonfieldsinimport.inc.php';
 		$import_extrafield_sample = array();
 		$keyforselect='formuledevoyage'; $keyforaliasextra='extra'; $keyforelement='formuledevoyage@clienjoyholidays';
@@ -446,7 +441,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 				'rule'=>'getrefifauto',
 				'class'=>(!getDolGlobalString('CLIENJOYHOLIDAYS_MYOBJECT_ADDON') ? 'mod_formuledevoyage_standard' : getDolGlobalString('CLIENJOYHOLIDAYS_MYOBJECT_ADDON')),
 				'path'=>"/core/modules/commande/".(!getDolGlobalString('CLIENJOYHOLIDAYS_MYOBJECT_ADDON') ? 'mod_formuledevoyage_standard' : getDolGlobalString('CLIENJOYHOLIDAYS_MYOBJECT_ADDON')).'.php'
-				'classobject'=>'FormuledeVoyage',
+				'classobject'=>'FormuleDeVoyage',
 				'pathobject'=>'/clienjoyholidays/class/formuledevoyage.class.php',
 			),
 			't.fk_soc' => array('rule' => 'fetchidfromref', 'file' => '/societe/class/societe.class.php', 'class' => 'Societe', 'method' => 'fetch', 'element' => 'ThirdParty'),
@@ -476,15 +471,6 @@ class modCliEnjoyHolidays extends DolibarrModules
 			return -1; // Do not activate module if error 'not allowed' returned when loading module SQL queries (the _load_table run sql with run_sql with the error allowed parameter set to 'default')
 		}
 
-		// Create extrafields during init
-		//include_once DOL_DOCUMENT_ROOT.'/core/class/extrafields.class.php';
-		//$extrafields = new ExtraFields($this->db);
-		//$result1=$extrafields->addExtraField('clienjoyholidays_myattr1', "New Attr 1 label", 'boolean', 1,  3, 'thirdparty',   0, 0, '', '', 1, '', 0, 0, '', '', 'clienjoyholidays@clienjoyholidays', 'isModEnabled("clienjoyholidays")');
-		//$result2=$extrafields->addExtraField('clienjoyholidays_myattr2', "New Attr 2 label", 'varchar', 1, 10, 'project',      0, 0, '', '', 1, '', 0, 0, '', '', 'clienjoyholidays@clienjoyholidays', 'isModEnabled("clienjoyholidays")');
-		//$result3=$extrafields->addExtraField('clienjoyholidays_myattr3', "New Attr 3 label", 'varchar', 1, 10, 'bank_account', 0, 0, '', '', 1, '', 0, 0, '', '', 'clienjoyholidays@clienjoyholidays', 'isModEnabled("clienjoyholidays")');
-		//$result4=$extrafields->addExtraField('clienjoyholidays_myattr4', "New Attr 4 label", 'select',  1,  3, 'thirdparty',   0, 1, '', array('options'=>array('code1'=>'Val1','code2'=>'Val2','code3'=>'Val3')), 1,'', 0, 0, '', '', 'clienjoyholidays@clienjoyholidays', 'isModEnabled("clienjoyholidays")');
-		//$result5=$extrafields->addExtraField('clienjoyholidays_myattr5', "New Attr 5 label", 'text',    1, 10, 'user',         0, 0, '', '', 1, '', 0, 0, '', '', 'clienjoyholidays@clienjoyholidays', 'isModEnabled("clienjoyholidays")');
-
 		// Permissions
 		$this->remove($options);
 
@@ -493,10 +479,10 @@ class modCliEnjoyHolidays extends DolibarrModules
 		// Document templates
 		$moduledir = dol_sanitizeFileName('clienjoyholidays');
 		$myTmpObjects = array();
-		$myTmpObjects['FormuledeVoyage'] = array('includerefgeneration'=>0, 'includedocgeneration'=>0);
+		$myTmpObjects['FormuleDeVoyage'] = array('includerefgeneration'=>0, 'includedocgeneration'=>0);
 
 		foreach ($myTmpObjects as $myTmpObjectKey => $myTmpObjectArray) {
-			if ($myTmpObjectKey == 'FormuledeVoyage') {
+			if ($myTmpObjectKey == 'FormuleDeVoyage') {
 				continue;
 			}
 			if ($myTmpObjectArray['includerefgeneration']) {

@@ -18,13 +18,13 @@
 /**
  * \file    lib/clienjoyholidays_formuledevoyage.lib.php
  * \ingroup clienjoyholidays
- * \brief   Library files with common functions for FormuledeVoyage
+ * \brief   Library files with common functions for FormuleDeVoyage
  */
 
 /**
- * Prepare array of tabs for FormuledeVoyage
+ * Prepare array of tabs for FormuleDeVoyage
  *
- * @param	FormuledeVoyage	$object		FormuledeVoyage
+ * @param	FormuleDeVoyage	$object		FormuleDeVoyage
  * @return 	array					Array of tabs
  */
 function formuledevoyagePrepareHead($object)
@@ -42,7 +42,7 @@ function formuledevoyagePrepareHead($object)
 	$head = array();
 
 	$head[$h][0] = dol_buildpath("/clienjoyholidays/formuledevoyage_card.php", 1).'?id='.$object->id;
-	$head[$h][1] = $langs->trans("FormuledeVoyage");
+	$head[$h][1] = $langs->trans("FormuleDeVoyage");
 	$head[$h][2] = 'card';
 	$h++;
 

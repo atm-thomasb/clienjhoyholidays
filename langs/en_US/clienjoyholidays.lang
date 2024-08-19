@@ -33,9 +33,9 @@ EnjoyHelpTextCost = If not specified, a default cost is used according to the co
 #
 # Admin page
 #
-ReadCliEnjoyHolidays = Read the FormuledeVoyage object of CliEnjoyHolidays
-CreateUpdateCliEnjoyHolidays = Create/Update the FormuledeVoyage object of CliEnjoyHolidays
-DeleteCliEnjoyHolidays = Delete the FormuledeVoyage object of CliEnjoyHolidays
+ReadCliEnjoyHolidays = Read the FormuleDeVoyage object of CliEnjoyHolidays
+CreateUpdateCliEnjoyHolidays = Create/Update the FormuleDeVoyage object of CliEnjoyHolidays
+DeleteCliEnjoyHolidays = Delete the FormuleDeVoyage object of CliEnjoyHolidays
 
 
 #
@@ -50,9 +50,9 @@ CliEnjoyHolidaysAboutPage = CliEnjoyHolidays about page
 #
 MyPageName = Card page
 ErrorShortLabel = Error, label too short
-FormuledeVoyage = Trip Sheet
-NewObjectFormuledeVoyage = New %s
-DeleteFormuledeVoyage = Delete TripSheet
+FormuleDeVoyage = Trip Sheet
+NewObjectFormuleDeVoyage = New %s
+DeleteFormuleDeVoyage = Delete TripSheet
 
 
 #
@@ -64,8 +64,8 @@ MyPageName = My page name
 #
 # Left Menu
 #
-ListFormuledeVoyage = List TripSheet
-NewFormuledeVoyage = New TripSheet
+ListFormuleDeVoyage = List TripSheet
+NewFormuleDeVoyage = New TripSheet
 
 #
 # Enjoyholidays widget
