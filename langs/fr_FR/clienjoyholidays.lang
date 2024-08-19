@@ -29,6 +29,7 @@ DateRoundTrip = Date Arrivée
 TransportMode = Mode de Transport
 EnjoyHelpTextCost = Si non renseigné, un tarif par défaut est enregistré en fonction du pays. Si le pays n'est pas renseigné, un tarif par défaut est utilisé.
 FormuleDeVoyages = Formules de Voyage
+ErrorDeleteObjectLinked = Erreur, l'objet lié n'a pas été supprimé
 
 #
 # Admin page

@@ -1,9 +1,7 @@
 # CHANGELOG CLIENJOYHOLIDAYS FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
 ## 1.3
-- NEW: triggers to create object from Propal - *14/08/2024* - 1.3
-- NEW: Deletion link with propal if created from it - *16/08/2024* - 1.3
-- NEW: Added note propal extrafield - *16/08/2024* - 1.3
+- NEW: create a travel from a propal + delete propal or travel if they are linked - *16/08/2024 *- 1.3
 
 - FIX: FormuledeVoyage renamed everywhere to FormuleDeVoyage for consistency - *16/08/2024* - 1.3
 
