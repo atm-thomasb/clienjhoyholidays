@@ -1,5 +1,8 @@
 # CHANGELOG CLIENJOYHOLIDAYS FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 1.5
+- NEW: pdf support
+- 
 ## 1.4
 - NEW: Two new extrafields - *19/08/2024* - 1.4
 
