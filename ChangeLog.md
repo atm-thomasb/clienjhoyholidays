@@ -4,7 +4,7 @@
 - NEW: pdf support
 - 
 ## 1.4
-- NEW: Two new extrafields - *19/08/2024* - 1.4
+- NEW: Two new extrafields, in propal: Note. In propalline: user (from user) - *19/08/2024* - 1.4
 
 ## 1.3
 - NEW: Possibility to create a travel from a propal + delete propal or travel if they are linked - *16/08/2024* - 1.3

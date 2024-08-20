@@ -1782,22 +1782,7 @@ class pdf_cyan_clienjoyholidays extends ModelePDFPropales
 			$pdf->SetXY($posx + 2, $posy);
 			$pdf->MultiCell($widthrecbox, 4, $carac_client, 0, $ltrdirection);
 		}
-		var_dump("<pre>");
-		var_dump($object); exit;
 
-
-		$sql = "SELECT clienjoyholidays_note";
-		$sql .= " FROM ".$this->db->prefix()."propal_extrafields";
-		$sql .= " WHERE fk_object = '".$this->db->escape($this->id)."'";
-		$result = $this->db->query($sql);
-		foreach ($result as $row) {
-			$posx = $pdf->getX();
-			$posy = $pdf->getY();
-			$pdf->setXY($posx,$posy+2);
-			$pdf->SetTextColor(0,0,200);
-			$pdf->SetFont('', '', $default_font_size + 2);
-			$pdf->MultiCell($w, 4, $row, '', 'R');
-		}
 
 		$pdf->SetTextColor(0, 0, 0);
 		return $top_shift;
