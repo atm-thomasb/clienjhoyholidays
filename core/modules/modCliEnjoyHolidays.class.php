@@ -71,7 +71,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 		$this->editor_url = '';
 
 		// Possible values for version are: 'development', 'experimental', 'dolibarr', 'dolibarr_deprecated', 'experimental_deprecated' or a version string like 'x.y.z'
-		$this->version = '1.5';
+		$this->version = '1.6';
 		// Url to the file with your last numberversion of this module
 		//$this->url_last_version = 'http://www.example.com/versionmodule.txt';
 
@@ -387,45 +387,50 @@ class modCliEnjoyHolidays extends DolibarrModules
 		/* END MODULEBUILDER LEFTMENU MYOBJECT */
 		// Exports profiles provided by this module
 		$r = 1;
-		/* BEGIN MODULEBUILDER EXPORT MYOBJECT */
-		/*
+
 		$langs->load("clienjoyholidays@clienjoyholidays");
+
 		$this->export_code[$r]=$this->rights_class.'_'.$r;
-		$this->export_label[$r]='FormuleDeVoyageLines';	// Translation key (used only if key ExportDataset_xxx_z not found)
-		$this->export_icon[$r]='formuledevoyage@clienjoyholidays';
+		$this->export_label[$r]='FormuleDeVoyageLines';
+		$this->export_icon[$r]='clienjoyholidays@clienjoyholidays';
+
 		// Define $this->export_fields_array, $this->export_TypeFields_array and $this->export_entities_array
 		$keyforclass = 'FormuleDeVoyage'; $keyforclassfile='/clienjoyholidays/class/formuledevoyage.class.php'; $keyforelement='formuledevoyage@clienjoyholidays';
+
 		include DOL_DOCUMENT_ROOT.'/core/commonfieldsinexport.inc.php';
+
 		//$this->export_fields_array[$r]['t.fieldtoadd']='FieldToAdd'; $this->export_TypeFields_array[$r]['t.fieldtoadd']='Text';
 		//unset($this->export_fields_array[$r]['t.fieldtoremove']);
 		//$keyforclass = 'FormuleDeVoyageLine'; $keyforclassfile='/clienjoyholidays/class/formuledevoyage.class.php'; $keyforelement='formuledevoyageline@clienjoyholidays'; $keyforalias='tl';
 		//include DOL_DOCUMENT_ROOT.'/core/commonfieldsinexport.inc.php';
+
 		$keyforselect='formuledevoyage'; $keyforaliasextra='extra'; $keyforelement='formuledevoyage@clienjoyholidays';
 		include DOL_DOCUMENT_ROOT.'/core/extrafieldsinexport.inc.php';
+
 		//$keyforselect='formuledevoyageline'; $keyforaliasextra='extraline'; $keyforelement='formuledevoyageline@clienjoyholidays';
 		//include DOL_DOCUMENT_ROOT.'/core/extrafieldsinexport.inc.php';
 		//$this->export_dependencies_array[$r] = array('formuledevoyageline'=>array('tl.rowid','tl.ref')); // To force to activate one or several fields if we select some fields that need same (like to select a unique key if we ask a field of a child to avoid the DISTINCT to discard them, or for computed field than need several other fields)
 		//$this->export_special_array[$r] = array('t.field'=>'...');
 		//$this->export_examplevalues_array[$r] = array('t.field'=>'Example');
 		//$this->export_help_array[$r] = array('t.field'=>'FieldDescHelp');
+
 		$this->export_sql_start[$r]='SELECT DISTINCT ';
-		$this->export_sql_end[$r]  =' FROM '.MAIN_DB_PREFIX.'formuledevoyage as t';
+		$this->export_sql_end[$r]  =' FROM '.MAIN_DB_PREFIX.'clienjoyholidays_formuledevoyage as t';
 		//$this->export_sql_end[$r]  =' LEFT JOIN '.MAIN_DB_PREFIX.'formuledevoyage_line as tl ON tl.fk_formuledevoyage = t.rowid';
 		$this->export_sql_end[$r] .=' WHERE 1 = 1';
-		$this->export_sql_end[$r] .=' AND t.entity IN ('.getEntity('formuledevoyage').')';
-		$r++; */
-		/* END MODULEBUILDER EXPORT MYOBJECT */
+		//$this->export_sql_end[$r] .=' AND t.entity IN ('.getEntity('formuledevoyage').')';
+		$r++;
+
+
 
 		// Imports profiles provided by this module
 		$r = 1;
-		/* BEGIN MODULEBUILDER IMPORT MYOBJECT */
-		/*
 		$langs->load("clienjoyholidays@clienjoyholidays");
 		$this->import_code[$r]=$this->rights_class.'_'.$r;
 		$this->import_label[$r]='FormuleDeVoyageLines';	// Translation key (used only if key ExportDataset_xxx_z not found)
-		$this->import_icon[$r]='formuledevoyage@clienjoyholidays';
+		$this->import_icon[$r]='clienjoyholidays@clienjoyholidays';
 		$this->import_tables_array[$r] = array('t' => MAIN_DB_PREFIX.'clienjoyholidays_formuledevoyage', 'extra' => MAIN_DB_PREFIX.'clienjoyholidays_formuledevoyage_extrafields');
-		$this->import_tables_creator_array[$r] = array('t' => 'fk_user_author'); // Fields to store import user id
+		//$this->import_tables_creator_array[$r] = array('t' => 'fk_user_author'); // Fields to store import user id
 		$import_sample = array();
 		$keyforclass = 'FormuleDeVoyage'; $keyforclassfile='/clienjoyholidays/class/formuledevoyage.class.php'; $keyforelement='formuledevoyage@clienjoyholidays';
 		include DOL_DOCUMENT_ROOT.'/core/commonfieldsinimport.inc.php';
@@ -440,7 +445,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 			't.ref' => array(
 				'rule'=>'getrefifauto',
 				'class'=>(!getDolGlobalString('CLIENJOYHOLIDAYS_MYOBJECT_ADDON') ? 'mod_formuledevoyage_standard' : getDolGlobalString('CLIENJOYHOLIDAYS_MYOBJECT_ADDON')),
-				'path'=>"/core/modules/commande/".(!getDolGlobalString('CLIENJOYHOLIDAYS_MYOBJECT_ADDON') ? 'mod_formuledevoyage_standard' : getDolGlobalString('CLIENJOYHOLIDAYS_MYOBJECT_ADDON')).'.php'
+				'path'=>"/core/modules/commande/".(!getDolGlobalString('CLIENJOYHOLIDAYS_MYOBJECT_ADDON') ? 'mod_formuledevoyage_standard' : getDolGlobalString('CLIENJOYHOLIDAYS_MYOBJECT_ADDON')).'.php',
 				'classobject'=>'FormuleDeVoyage',
 				'pathobject'=>'/clienjoyholidays/class/formuledevoyage.class.php',
 			),
@@ -449,8 +454,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 			't.fk_mode_reglement' => array('rule' => 'fetchidfromcodeorlabel', 'file' => '/compta/paiement/class/cpaiement.class.php', 'class' => 'Cpaiement', 'method' => 'fetch', 'element' => 'cpayment'),
 		);
 		$this->import_run_sql_after_array[$r] = array();
-		$r++; */
-		/* END MODULEBUILDER IMPORT MYOBJECT */
+		$r++;
 	}
 
 	/**
