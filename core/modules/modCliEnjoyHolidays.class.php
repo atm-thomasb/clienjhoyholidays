@@ -71,7 +71,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 		$this->editor_url = '';
 
 		// Possible values for version are: 'development', 'experimental', 'dolibarr', 'dolibarr_deprecated', 'experimental_deprecated' or a version string like 'x.y.z'
-		$this->version = '1.4';
+		$this->version = '1.5';
 		// Url to the file with your last numberversion of this module
 		//$this->url_last_version = 'http://www.example.com/versionmodule.txt';
 
@@ -99,7 +99,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 			// Set this to 1 if module has its own barcode directory (core/modules/barcode)
 			'barcode' => 0,
 			// Set this to 1 if module has its own models directory (core/modules/xxx)
-			'models' => 0,
+			'models' => 1,
 			// Set this to 1 if module has its own printing directory (core/modules/printing)
 			'printing' => 0,
 			// Set this to 1 if module has its own theme directory (theme)
@@ -474,7 +474,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 		// Create extrafields during init
 		include_once DOL_DOCUMENT_ROOT.'/core/class/extrafields.class.php';
 		$extrafields = new ExtraFields($this->db);
-		$result1=$extrafields->addExtraField('clienjoyholidays_note', "Mention spécifique", 'text', 1,  3, 'propal',   0, 0, '', 'a:1:{s:7:"options";a:1:{s:44:"User:user/class/user.class.php::(statut:=:1)";N;}}', 1, '', 0, 0, '', '', 'clienjoyholidays@clienjoyholidays', 'isModEnabled("clienjoyholidays")');
+		$result1=$extrafields->addExtraField('clienjoyholidays_note', "Mention spécifique", 'text', 1,  3, 'propal',   0, 0, '', 'a:1:{s:7:"options";a:1:{s:44:"User:user/class/user.class.php::(statut:=:1)";N;}}', 1, '', 0, 0, '', '', 'clienjoyholidays@clienjoyholidays', 'isModEnabled("clienjoyholidays")', 0,  2,);
 		$result2=$extrafields->addExtraField('clienjoyholidays_manager', "Responsable", 'link', 2, 10, 'propaldet',      0, 0, '', 'a:1:{s:7:"options";a:1:{s:44:"User:user/class/', 1, '', 0, 0, '', '', 'clienjoyholidays@clienjoyholidays', 'isModEnabled("clienjoyholidays")');
 
 		// Permissions
