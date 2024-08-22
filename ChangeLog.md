@@ -1,8 +1,11 @@
 # CHANGELOG CLIENJOYHOLIDAYS FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 1.6
+- NEW: Added export and import in csv - *21/08/2024* - 1.6
+
 ## 1.5
 - NEW: add cyan model pdf for object "Formule de Voyage"  - *20/08/2024* - 1.5
-- 
+
 ## 1.4
 - NEW: Two new extrafields, in propal: Note. In propalline: user (from user) - *19/08/2024* - 1.4
 
