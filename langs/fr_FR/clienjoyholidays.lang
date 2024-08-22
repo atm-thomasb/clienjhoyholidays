@@ -97,3 +97,8 @@ createFormuleDeVoyageFromPropal = Créer formule de voyage
 # PDF
 #
 DocModelCyanCliEnjoyHolidaysDescription = Un modèle de proposition complet pour Formule de Voyage
+
+#
+# Email
+#
+InformationMessage = Bonjour, ceci est un TEST

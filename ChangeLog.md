@@ -1,5 +1,8 @@
 # CHANGELOG CLIENJOYHOLIDAYS FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 1.9
+- NEW: Sending Email default to Voyager contacts - *22/08/2024* - 1.9
+
 ## 1.8
 - NEW: Contact tab with "Voyageur" type of contact - *22/08/2024* - 1.8
 

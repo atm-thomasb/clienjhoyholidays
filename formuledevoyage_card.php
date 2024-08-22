@@ -647,6 +647,12 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 		$action = 'presend';
 	}
 
+	// Add default recievers to be the "Voyageurs"
+	$object->fetchObjectLinked();
+	var_dump($object->fetchObjectLinked());
+	var_dump($object->linkedObjects);
+	$_POST['sendto']='test@toast.fr';
+
 	// Presend form
 	$modelmail = 'formuledevoyage';
 	$defaulttopic = 'InformationMessage';
