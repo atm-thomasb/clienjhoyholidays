@@ -648,10 +648,31 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 	}
 
 	// Add default recievers to be the "Voyageurs"
-	$object->fetchObjectLinked();
-	var_dump($object->fetchObjectLinked());
-	var_dump($object->linkedObjects);
-	$_POST['sendto']='test@toast.fr';
+//	var_dump($object->liste_contact());
+//	$listDefaultContacts = array();
+//	array_push($listDefaultContacts, $contactlist = );
+//	array_push($listDefaultContacts, $contactlist = $object->liste_contact(-1, 'external'));
+
+//	$emailsAdressesDefault = "";
+//	foreach ($object->liste_contact(-1, 'internal') as $contact) {
+////		var_dump("<pre>");
+////		var_dump($contact);
+//		if ($contact["code"]=="VOYAGER"){
+//			$emailsAdressesDefault .= $contact["email"].", ";
+//		}
+//	}
+//
+//	foreach ($object->liste_contact(-1, 'external') as $contact) {
+////		var_dump("<pre>");
+////		var_dump($contact);
+//		if ($contact["code"]=="VOYAGER"){
+//			$emailsAdressesDefault .= $contact["email"].", ";
+//		}
+//	}
+//
+//
+//	$_POST['sendto']=$emailsAdressesDefault;
+
 
 	// Presend form
 	$modelmail = 'formuledevoyage';
