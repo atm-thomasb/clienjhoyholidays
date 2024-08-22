@@ -222,7 +222,8 @@ if ($object->id) {
 		$res = @include dol_buildpath($reldir.'/contacts.tpl.php');
 		if ($res) {
 			break;
-		}	}
+		}
+	}
 }
 
 // End of page
