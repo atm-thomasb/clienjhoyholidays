@@ -1,8 +1,7 @@
 # CHANGELOG CLIENJOYHOLIDAYS FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
 ## 1.8
-- NEW: Contact tab with "Voya
-- geur" typoe of contact - *22/08/2024* - 1.8
+- NEW: Contact tab with "Voyageur" type of contact - *22/08/2024* - 1.8
 
 ## 1.7
 - NEW: Added API call to list Formules de Voyages - *21/08/2024* - 1.7

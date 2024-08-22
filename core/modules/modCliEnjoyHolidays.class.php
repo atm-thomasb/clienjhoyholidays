@@ -119,7 +119,9 @@ class modCliEnjoyHolidays extends DolibarrModules
 			// Set this to 1 if features of module are opened to external users
 			'moduleforexternal' => 0,
 
-			'contactelement' => 1,
+			'contactelement' => array(
+				"clienjoyholidays_formuledevoyage" => $langs->trans("FormuleDeVoyage")
+			),
 		);
 
 		// Data directories to create when module is enabled.
