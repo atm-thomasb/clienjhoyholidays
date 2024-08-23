@@ -647,40 +647,23 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 		$action = 'presend';
 	}
 
-	// Add default recievers to be the "Voyageurs"
-//	var_dump($object->liste_contact());
-//	$listDefaultContacts = array();
-//	array_push($listDefaultContacts, $contactlist = );
-//	array_push($listDefaultContacts, $contactlist = $object->liste_contact(-1, 'external'));
-
-//	$emailsAdressesDefault = "";
-//	foreach ($object->liste_contact(-1, 'internal') as $contact) {
-////		var_dump("<pre>");
-////		var_dump($contact);
-//		if ($contact["code"]=="VOYAGER"){
-//			$emailsAdressesDefault .= $contact["email"].", ";
-//		}
-//	}
-//
-//	foreach ($object->liste_contact(-1, 'external') as $contact) {
-////		var_dump("<pre>");
-////		var_dump($contact);
-//		if ($contact["code"]=="VOYAGER"){
-//			$emailsAdressesDefault .= $contact["email"].", ";
-//		}
-//	}
-//
-//
-//	$_POST['sendto']=$emailsAdressesDefault;
-
-
 	// Presend form
 	$modelmail = 'formuledevoyage';
 	$defaulttopic = 'InformationMessage';
 	$diroutput = $conf->clienjoyholidays->dir_output;
 	$trackid = 'formuledevoyage'.$object->id;
 
+	
+	// Add default receivers to be the "Voyageurs"
+	$contact = $object->liste_contact('', 'external', '0', 'VOYAGER');
+	$_POST['receiver']=[];
+
+	foreach($contact as $c){
+		$_POST["receiver"][]=$c["id"];
+	}
+
 	include DOL_DOCUMENT_ROOT.'/core/tpl/card_presend.tpl.php';
+
 }
 
 // End of page

@@ -28,14 +28,6 @@ require_once __DIR__ . '/formuledevoyage.class.php';
 class CliEnjoyHolidaysAPI extends DolibarrApi
 {
 	/**
-	 * @var array   $FIELDS     Mandatory fields, checked when create and update object
-	 */
-//	public static $FIELDS = array(
-//		'socid',
-//		'date'
-//	);
-
-	/**
 	 * @var Commande $commande {@type Commande}
 	 */
 	public $formuledevoyage;
