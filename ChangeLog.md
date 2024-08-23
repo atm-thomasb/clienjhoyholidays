@@ -4,13 +4,13 @@
 - NEW: Contact tab with "Voyageur" type of contact - *22/08/2024* - 1.8
 
 ## 1.7
-- NEW: Added API call to list Formules de Voyages - *21/08/2024* - 1.7
+- NEW: Add API  "Formules de Voyages" - *21/08/2024* - 1.7
 
 ## 1.6
-- NEW: Added export and import in csv to Tools menu - *21/08/2024* - 1.6
+- NEW: Added export and import in csv - *21/08/2024* - 1.6
 
 ## 1.5
-- NEW: pdf support for Formule de Voyage object with extrafields display integration - *20/08/2024* - 1.5
+- NEW: add cyan model pdf for object "Formule de Voyage"  - *20/08/2024* - 1.5
 
 ## 1.4
 - NEW: Two new extrafields, in propal: Note. In propalline: user (from user) - *19/08/2024* - 1.4
