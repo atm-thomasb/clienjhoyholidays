@@ -1,7 +1,7 @@
 # CHANGELOG CLIENJOYHOLIDAYS FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
 ## 1.7
-- NEW: Added API call to list Formules de Voyages - *21/08/2024* - 1.7
+- NEW: Add API  "Formules de Voyages" - *21/08/2024* - 1.7
 
 ## 1.6
 - NEW: Added export and import in csv - *21/08/2024* - 1.6
