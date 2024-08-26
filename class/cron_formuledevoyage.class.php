@@ -92,7 +92,7 @@ class cron_FormuleDeVoyage extends CommonObject
 			// Calculates the date time difference in days
 			$datediff = ($now-$object->date_creation)/3600/24;
 
-			if ($object->status != 1 && $datediff > 21) {
+			if ($object->status != FormuleDeVoyage::STATUS_VALIDATED && $datediff > 21) {
 				$object->delete($user);
 				var_dump("Formule supprimée ".$object->ref." because old of ".$datediff." days");
 			}
