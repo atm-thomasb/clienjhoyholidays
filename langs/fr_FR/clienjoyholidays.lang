@@ -102,3 +102,8 @@ DocModelCyanCliEnjoyHolidaysDescription = Un modèle de proposition complet pour
 # Email
 #
 InformationMessage = Bonjour, ceci est un TEST
+
+#
+# Cron
+#
+CronDelete = Supprimer les formules de voyage non validées de plus de 3 sermaines

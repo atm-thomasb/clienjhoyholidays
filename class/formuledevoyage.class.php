@@ -1265,6 +1265,14 @@ class FormuleDeVoyage extends CommonObject
 
 		$now = dol_now();
 
+		// Calculates the date time difference in days
+		$datediff = ($now-$this->date_creation)/3600/24;
+
+		// Deletes all Formule de Voyage that aren't validated and older than 3 weeks
+		if ($this->status != self::STATUS_VALIDATED && $datediff > 21) {
+			//$this->delete($user);
+			var_dump("Formule supprimée".$this->date_creation."     a   ".$now);
+		}
 		$this->db->begin();
 
 		// ...

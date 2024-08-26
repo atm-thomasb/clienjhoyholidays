@@ -653,7 +653,7 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 	$diroutput = $conf->clienjoyholidays->dir_output;
 	$trackid = 'formuledevoyage'.$object->id;
 
-	
+
 	// Add default receivers to be the "Voyageurs"
 	$contact = $object->liste_contact('', 'external', '0', 'VOYAGER');
 	$_POST['receiver']=[];
