@@ -653,13 +653,17 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 	$diroutput = $conf->clienjoyholidays->dir_output;
 	$trackid = 'formuledevoyage'.$object->id;
 
-	
-	// Add default receivers to be the "Voyageurs"
-	$contact = $object->liste_contact('', 'external', '0', 'VOYAGER');
-	$_POST['receiver']=[];
 
-	foreach($contact as $c){
-		$_POST["receiver"][]=$c["id"];
+	// Adds default receivers to be the "Voyageurs"
+	if (empty($_POST['receiver'])){
+		$Tcontacts = $object->liste_contact('', 'external', '0', 'VOYAGER');
+		if ($Tcontacts == -1) {
+			setEventMessages('', [$langs->trans("ErrorGettingContact")], 'errors');
+		} else {
+			foreach($Tcontacts as $c){
+				$_POST["receiver"][]=$c["id"];
+			}
+		}
 	}
 
 	include DOL_DOCUMENT_ROOT.'/core/tpl/card_presend.tpl.php';
