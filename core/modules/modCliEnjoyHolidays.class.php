@@ -475,7 +475,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 		}
 
 		// Add contact types into c_type_contact dictionary
-		if($this->needUpdate('1.7.0')){
+		if($this->needUpdate('1.8.0')){
 			$sqlContact = "INSERT INTO ".$this->db->prefix()."c_type_contact (element, source, code, libelle, active, module, position)";
 			$sqlContact .= "VALUES ('clienjoyholidays_formuledevoyage', 'internal', 'VOYAGER', '".$langs->trans('ContactVoyager')."', '1', 'NULL', '1'),";
 			$sqlContact .= "('clienjoyholidays_formuledevoyage', 'external', 'VOYAGER', '".$langs->trans('ContactVoyager')."', '1', 'NULL', '2')";
