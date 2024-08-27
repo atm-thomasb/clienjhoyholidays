@@ -71,7 +71,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 		$this->editor_url = '';
 
 		// Possible values for version are: 'development', 'experimental', 'dolibarr', 'dolibarr_deprecated', 'experimental_deprecated' or a version string like 'x.y.z'
-		$this->version = '1.8';
+		$this->version = '1.8.0';
 		// Url to the file with your last numberversion of this module
 		//$this->url_last_version = 'http://www.example.com/versionmodule.txt';
 
@@ -475,11 +475,14 @@ class modCliEnjoyHolidays extends DolibarrModules
 		}
 
 		// Add contact types into c_type_contact dictionary
-		$sqlContact = "INSERT INTO ".MAIN_DB_PREFIX."c_type_contact (element, source, code, libelle, active, module, position)";
-		$sqlContact .= "VALUES ('clienjoyholidays_formuledevoyage', 'internal', 'VOYAGER', 'Voyageur', '1', 'NULL', '1'),";
-		$sqlContact .= "('clienjoyholidays_formuledevoyage', 'external', 'VOYAGER', 'Voyageur', '1', 'NULL', '2')";
-		array_push($sql, $sqlContact);
+		if($this->needUpdate('1.7.0')){
+			$sqlContact = "INSERT INTO ".$this->db->prefix()."c_type_contact (element, source, code, libelle, active, module, position)";
+			$sqlContact .= "VALUES ('clienjoyholidays_formuledevoyage', 'internal', 'VOYAGER', '".$langs->trans('ContactVoyager')."', '1', 'NULL', '1'),";
+			$sqlContact .= "('clienjoyholidays_formuledevoyage', 'external', 'VOYAGER', '".$langs->trans('ContactVoyager')."', '1', 'NULL', '2')";
+			array_push($sql, $sqlContact);
+		}
 
+		dolibarr_set_const($this->db, 'CLIENJOYHOLIDAYS_MOD_LAST_RELOAD_VERSION', $this->version, 'chaine', 1, '', 0);
 		return $this->_init($sql, $options);
 	}
 
@@ -496,4 +499,25 @@ class modCliEnjoyHolidays extends DolibarrModules
 		$sql = array();
 		return $this->_remove($sql, $options);
 	}
+
+	/**
+	 * Compare
+	 *
+	 * @param string $targetVersion numéro de version pour lequel il faut faire la comparaison
+	 * @return bool
+	 */
+	public function needUpdate($targetVersion){
+		global $conf;
+
+		if (empty($conf->global->CLIENJOYHOLIDAYS_MOD_LAST_RELOAD_VERSION)) {
+			return true;
+		}
+
+		if(versioncompare(explode('.',$targetVersion), explode('.', $conf->global->CLIENJOYHOLIDAYS_MOD_LAST_RELOAD_VERSION)) > 0){
+			return true;
+		}
+
+		return false;
+	}
+
 }
