@@ -654,11 +654,13 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 	$trackid = 'formuledevoyage'.$object->id;
 
 
-	// Adds default receivers to be the "Voyageurs"
-	if (empty($_POST['receiver'])){
+	// Adds default contacts to be the Voyagers
+	if (!GETPOSTISSET('receiver')){
 		$Tcontacts = $object->liste_contact('', 'external', '0', 'VOYAGER');
 		if ($Tcontacts == -1) {
-			setEventMessages('', [$langs->trans("ErrorGettingContact")], 'errors');
+			$object->error = $langs->trans("ErrorGettingContact");
+			setEventMessages('', [$object->error], 'errors');
+			dol_syslog(__FILE__." Adds default contacts to be the Voyagers: ".$object->error, LOG_ERR);
 		} else {
 			foreach($Tcontacts as $c){
 				$_POST["receiver"][]=$c["id"];
