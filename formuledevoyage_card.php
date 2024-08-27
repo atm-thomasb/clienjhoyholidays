@@ -655,12 +655,10 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 
 
 	// Adds default receivers to be the "Voyageurs"
-	if (!GETPOSTISSET('receiver')){
+	if (empty($_POST['receiver'])){
 		$Tcontacts = $object->liste_contact('', 'external', '0', 'VOYAGER');
 		if ($Tcontacts == -1) {
-			$this->error = $langs->trans("ErrorGettingContact");
-			setEventMessages('', [$this->error], 'errors');
-			dol_syslog(get_class($this)."::valid ".$this->error, LOG_ERR);
+			setEventMessages('', [$langs->trans("ErrorGettingContact")], 'errors');
 		} else {
 			foreach($Tcontacts as $c){
 				$_POST["receiver"][]=$c["id"];
