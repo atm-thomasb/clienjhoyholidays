@@ -120,7 +120,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 			'moduleforexternal' => 0,
 
 			'contactelement' => array(
-				"clienjoyholidays_formuledevoyage" => $langs->trans("FormuleDeVoyage")
+				"clienjoyholidays_formuledevoyage" => img_picto('', 'fa-plane', 'class="pictofixedwidth"').$langs->trans("FormuleDeVoyage")
 			),
 		);
 
@@ -202,33 +202,6 @@ class modCliEnjoyHolidays extends DolibarrModules
 		// 'thirdparty'       to add a tab in third party view
 		// 'user'             to add a tab in user view
 
-		// Dictionaries
-		/* Example:
-		 $this->dictionaries=array(
-		 'langs'=>'clienjoyholidays@clienjoyholidays',
-		 // List of tables we want to see into dictonnary editor
-		 'tabname'=>array("table1", "table2", "table3"),
-		 // Label of tables
-		 'tablib'=>array("Table1", "Table2", "Table3"),
-		 // Request to select fields
-		 'tabsql'=>array('SELECT f.rowid as rowid, f.code, f.label, f.active FROM '.MAIN_DB_PREFIX.'table1 as f', 'SELECT f.rowid as rowid, f.code, f.label, f.active FROM '.MAIN_DB_PREFIX.'table2 as f', 'SELECT f.rowid as rowid, f.code, f.label, f.active FROM '.MAIN_DB_PREFIX.'table3 as f'),
-		 // Sort order
-		 'tabsqlsort'=>array("label ASC", "label ASC", "label ASC"),
-		 // List of fields (result of select to show dictionary)
-		 'tabfield'=>array("code,label", "code,label", "code,label"),
-		 // List of fields (list of fields to edit a record)
-		 'tabfieldvalue'=>array("code,label", "code,label", "code,label"),
-		 // List of fields (list of fields for insert)
-		 'tabfieldinsert'=>array("code,label", "code,label", "code,label"),
-		 // Name of columns with primary key (try to always name it 'rowid')
-		 'tabrowid'=>array("rowid", "rowid", "rowid"),
-		 // Condition to show each dictionary
-		 'tabcond'=>array(isModEnabled('clienjoyholidays'), isModEnabled('clienjoyholidays'), isModEnabled('clienjoyholidays')),
-		 // Tooltip for every fields of dictionaries: DO NOT PUT AN EMPTY ARRAY
-		 'tabhelp'=>array(array('code'=>$langs->trans('CodeTooltipHelp'), 'field2' => 'field2tooltip'), array('code'=>$langs->trans('CodeTooltipHelp'), 'field2' => 'field2tooltip'), ...),
-		 );
-		 */
-		/* BEGIN MODULEBUILDER DICTIONARIES */
 		$this->dictionaries=array(
 			'langs'=>'clienjoyholidays@clienjoyholidays',
 			'tabname'=>array(
@@ -500,6 +473,12 @@ class modCliEnjoyHolidays extends DolibarrModules
 				));
 			}
 		}
+
+		// Add contact types into c_type_contact dictionary
+		$sqlContact = "INSERT INTO ".MAIN_DB_PREFIX."c_type_contact (element, source, code, libelle, active, module, position)";
+		$sqlContact .= "VALUES ('clienjoyholidays_formuledevoyage', 'internal', 'VOYAGER', 'Voyageur', '1', 'NULL', '1'),";
+		$sqlContact .= "('clienjoyholidays_formuledevoyage', 'external', 'VOYAGER', 'Voyageur', '1', 'NULL', '2')";
+		array_push($sql, $sqlContact);
 
 		return $this->_init($sql, $options);
 	}
