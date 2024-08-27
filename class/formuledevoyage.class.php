@@ -62,7 +62,7 @@ class FormuleDeVoyage extends CommonObject
 	/**
 	 * @var string String with name of icon for formuledevoyage. Must be a 'fa-xxx' fontawesome code (or 'fa-xxx_fa_color_size') or 'formuledevoyage@clienjoyholidays' if picto is file 'img/object_formuledevoyage.png'.
 	 */
-	public $picto = 'fa-file';
+	public $picto = 'fa-plane';
 
 
 	const STATUS_DRAFT = 0;

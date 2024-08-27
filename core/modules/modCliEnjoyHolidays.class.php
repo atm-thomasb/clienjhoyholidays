@@ -71,7 +71,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 		$this->editor_url = '';
 
 		// Possible values for version are: 'development', 'experimental', 'dolibarr', 'dolibarr_deprecated', 'experimental_deprecated' or a version string like 'x.y.z'
-		$this->version = '1.9';
+		$this->version = '1.9.0';
 		// Url to the file with your last numberversion of this module
 		//$this->url_last_version = 'http://www.example.com/versionmodule.txt';
 
@@ -120,7 +120,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 			'moduleforexternal' => 0,
 
 			'contactelement' => array(
-				"clienjoyholidays_formuledevoyage" => $langs->trans("FormuleDeVoyage")
+				"clienjoyholidays_formuledevoyage" => img_picto('', 'fa-plane', 'class="pictofixedwidth"').$langs->trans("FormuleDeVoyage")
 			),
 		);
 
@@ -202,33 +202,6 @@ class modCliEnjoyHolidays extends DolibarrModules
 		// 'thirdparty'       to add a tab in third party view
 		// 'user'             to add a tab in user view
 
-		// Dictionaries
-		/* Example:
-		 $this->dictionaries=array(
-		 'langs'=>'clienjoyholidays@clienjoyholidays',
-		 // List of tables we want to see into dictonnary editor
-		 'tabname'=>array("table1", "table2", "table3"),
-		 // Label of tables
-		 'tablib'=>array("Table1", "Table2", "Table3"),
-		 // Request to select fields
-		 'tabsql'=>array('SELECT f.rowid as rowid, f.code, f.label, f.active FROM '.MAIN_DB_PREFIX.'table1 as f', 'SELECT f.rowid as rowid, f.code, f.label, f.active FROM '.MAIN_DB_PREFIX.'table2 as f', 'SELECT f.rowid as rowid, f.code, f.label, f.active FROM '.MAIN_DB_PREFIX.'table3 as f'),
-		 // Sort order
-		 'tabsqlsort'=>array("label ASC", "label ASC", "label ASC"),
-		 // List of fields (result of select to show dictionary)
-		 'tabfield'=>array("code,label", "code,label", "code,label"),
-		 // List of fields (list of fields to edit a record)
-		 'tabfieldvalue'=>array("code,label", "code,label", "code,label"),
-		 // List of fields (list of fields for insert)
-		 'tabfieldinsert'=>array("code,label", "code,label", "code,label"),
-		 // Name of columns with primary key (try to always name it 'rowid')
-		 'tabrowid'=>array("rowid", "rowid", "rowid"),
-		 // Condition to show each dictionary
-		 'tabcond'=>array(isModEnabled('clienjoyholidays'), isModEnabled('clienjoyholidays'), isModEnabled('clienjoyholidays')),
-		 // Tooltip for every fields of dictionaries: DO NOT PUT AN EMPTY ARRAY
-		 'tabhelp'=>array(array('code'=>$langs->trans('CodeTooltipHelp'), 'field2' => 'field2tooltip'), array('code'=>$langs->trans('CodeTooltipHelp'), 'field2' => 'field2tooltip'), ...),
-		 );
-		 */
-		/* BEGIN MODULEBUILDER DICTIONARIES */
 		$this->dictionaries=array(
 			'langs'=>'clienjoyholidays@clienjoyholidays',
 			'tabname'=>array(
@@ -501,6 +474,15 @@ class modCliEnjoyHolidays extends DolibarrModules
 			}
 		}
 
+		// Add contact types into c_type_contact dictionary
+		if($this->needUpdate('1.8.0')){
+			$sqlContact = "INSERT INTO ".$this->db->prefix()."c_type_contact (element, source, code, libelle, active, module, position)";
+			$sqlContact .= "VALUES ('clienjoyholidays_formuledevoyage', 'internal', 'VOYAGER', '".$langs->trans('ContactVoyager')."', '1', 'NULL', '1'),";
+			$sqlContact .= "('clienjoyholidays_formuledevoyage', 'external', 'VOYAGER', '".$langs->trans('ContactVoyager')."', '1', 'NULL', '2')";
+			array_push($sql, $sqlContact);
+		}
+
+		dolibarr_set_const($this->db, 'CLIENJOYHOLIDAYS_MOD_LAST_RELOAD_VERSION', $this->version, 'chaine', 1, '', 0);
 		return $this->_init($sql, $options);
 	}
 
@@ -517,4 +499,25 @@ class modCliEnjoyHolidays extends DolibarrModules
 		$sql = array();
 		return $this->_remove($sql, $options);
 	}
+
+	/**
+	 * Compare
+	 *
+	 * @param string $targetVersion numéro de version pour lequel il faut faire la comparaison
+	 * @return bool
+	 */
+	public function needUpdate($targetVersion){
+		global $conf;
+
+		if (empty($conf->global->CLIENJOYHOLIDAYS_MOD_LAST_RELOAD_VERSION)) {
+			return true;
+		}
+
+		if(versioncompare(explode('.',$targetVersion), explode('.', $conf->global->CLIENJOYHOLIDAYS_MOD_LAST_RELOAD_VERSION)) > 0){
+			return true;
+		}
+
+		return false;
+	}
+
 }
