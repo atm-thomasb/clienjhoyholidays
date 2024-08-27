@@ -32,6 +32,7 @@ require_once DOL_DOCUMENT_ROOT.'/core/class/commonobject.class.php';
 class cron_FormuleDeVoyage extends CommonObject
 {
 
+	public $output;
 	/**
 	 * Constructor
 	 *
@@ -49,7 +50,7 @@ class cron_FormuleDeVoyage extends CommonObject
 	 */
 	public function deleteOldNotValidatedFormules()
 	{
-		global $user;
+		global $user, $langs;
 
 		// Check for permissions
 		$permissiontodelete = $user->hasRight('clienjoyholidays', 'formuledevoyage', 'delete');
@@ -70,39 +71,30 @@ class cron_FormuleDeVoyage extends CommonObject
 
 		$this->db->begin();
 
-
-
-
-
-		// Build and execute select
-		// --------------------------------------------------------------------
-		$sql = "SELECT ";
-		$sql .= "t.rowid, t.ref,t.date_creation,t.status";
-		$sql .= " FROM ".MAIN_DB_PREFIX."clienjoyholidays_formuledevoyage as t";
-		$sql .= " ORDER BY t.rowid ASC;";
-
-		$resql = $this->db->query($sql);
-
-		$i = 0;
-
-		while ($i < min($this->db->num_rows($resql), 100)){
-			$obj = $this->db->fetch_object($resql);
-			$object->setVarsFromFetchObj($obj);
-
-			// Calculates the date time difference in days
-			$datediff = ($now-$object->date_creation)/3600/24;
-
-			if ($object->status != FormuleDeVoyage::STATUS_VALIDATED && $datediff > 21) {
-				$object->delete($user);
-				var_dump("Formule supprimée ".$object->ref." because old of ".$datediff." days");
+		$formulesDeleted = "";
+		$result = $object->fetchAll('', '',0, 0, ["customsql" => "DATEDIFF(NOW(), t.date_creation) > 21"]);
+		if ($result < 0){
+			$error = 1;
+			dol_syslog(get_class($this)."::deleteOldNotValidatedFormules ".$object->error, LOG_ERR);
+			$this->output = ($langs->trans("ErrorFetchingFormulesDeVoyage"));
+		} else {
+			foreach($result as $obj){
+				if ($obj->status != FormuleDeVoyage::STATUS_VALIDATED ) {
+					//$object->delete($user);
+					$formulesDeleted .= $obj->ref.", ";
+				}
 			}
 
-			$i++;
+			if ($formulesDeleted != ""){
+				$formulesDeleted = substr_replace($formulesDeleted, ".",-2);
+				$this->output = ($langs->trans("CronDeleteFormuleDeVoyage")).$formulesDeleted;
+			} else {
+				$this->output = ($langs->trans("CronSuccesButNoDeletion"));
+			}
+
 		}
 
-		$this->db->commit();
-
-		dol_syslog(__METHOD__." end", LOG_INFO);
+		$error==0 ? $this->db->commit() : $this->db->rollback();
 
 		return $error;
 	}

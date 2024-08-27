@@ -108,4 +108,7 @@ ErrorGettingContact = Erreur en tentant de récupérer les contacts liés.
 #
 # Cron
 #
-CronDelete = Supprimer les formules de voyage non validées de plus de 3 sermaines
+CronDelete = Supprimer les formules de voyage non validées de plus de 3 semaines
+CronDeleteFormuleDeVoyage = Formule(s) de voyage supprimée(s) :
+ErrorFetchingFormulesDeVoyage = Erreur en essayant de récupérer la liste des formules de voyage.
+CronSuccesButNoDeletion = La tâche planifiée a tournée avec succès mais sans supprimer de formule de voyage.

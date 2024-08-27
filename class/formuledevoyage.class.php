@@ -428,7 +428,7 @@ class FormuleDeVoyage extends CommonObject
 
 
 	/**
-	 * Load list of objects in memory from the database. Using a fetchAll is a bad practice, instead try to forge you optimized and limited SQL request.
+	 * Load list of objects in memory from the database. Using a fetchAll is a bad practice, instead try to forge your optimized and limited SQL request.
 	 *
 	 * @param  string      $sortorder    Sort Order
 	 * @param  string      $sortfield    Sort field
@@ -483,7 +483,7 @@ class FormuleDeVoyage extends CommonObject
 					}
 				}
 
-				// when the $key doesn't fall into the previously handled categories, we do as if the column were a varchar/text
+				// When the $key doesn't fall into the previously handled categories, we do as if the column were a varchar/text
 				if (is_array($value) && count($value)) {
 					$value = implode(',', array_map(function ($v) {
 						return "'" . $this->db->sanitize($this->db->escape($v)) . "'";
