@@ -103,6 +103,7 @@ DocModelCyanCliEnjoyHolidaysDescription = Un modèle de proposition complet pour
 # Email
 #
 InformationMessage = Bonjour, ceci est un TEST
+ErrorGettingContact = Erreur en tentant de récupérer les contacts liés.
 
 #
 # Cron
