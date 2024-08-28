@@ -80,7 +80,7 @@ class cron_FormuleDeVoyage extends CommonObject
 		} else {
 			foreach($result as $obj){
 				if ($obj->status != FormuleDeVoyage::STATUS_VALIDATED ) {
-					//$object->delete($user);
+					$obj->delete($user);
 					$formulesDeleted .= $obj->ref.", ";
 				}
 			}

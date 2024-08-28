@@ -255,7 +255,7 @@ class modCliEnjoyHolidays extends DolibarrModules
 			      'comment' => '',
 			      'frequency' => 1,
 			      'unitfrequency' => 3600*24,
-				  'datestart' => 1724727600,
+				  'datestart' => mktime(3, 0, 0, date("m")  , date("d"), date("Y")),
 			      'status' => 0,
 			      'test' => 'isModEnabled("clienjoyholidays")',
 			      'priority' => 49,

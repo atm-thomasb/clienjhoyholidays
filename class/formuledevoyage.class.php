@@ -555,7 +555,9 @@ class FormuleDeVoyage extends CommonObject
 	 */
 	public function delete(User $user, $notrigger = false)
 	{
-		if($this->fetchObjectLinked(null,"propal")) {
+
+		$this->fetchObjectLinked(null,"propal");
+		if(!empty($this->linkedObjects["propal"])) {
 			$objectsToDelete = $this->linkedObjects["propal"];
 			$this->deleteObjectLinked('', 'clienjoyholidays_formuledevoyage', $this->id, 'propal');
 			foreach ($objectsToDelete as $object) {
