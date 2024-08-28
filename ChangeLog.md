@@ -1,5 +1,8 @@
 # CHANGELOG CLIENJOYHOLIDAYS FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 1.10.0
+- NEW: CRON deleting "Formule de Voyage" if not validated and older than 3 weeks- *28/08/2024* - 1.10.0
+- 
 ## 1.9.0
 - NEW: Sending Email default to Voyager contacts - *22/08/2024* - 1.9.0
 

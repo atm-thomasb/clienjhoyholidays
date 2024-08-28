@@ -98,3 +98,21 @@ createFormuleDeVoyageFromPropal = Créer formule de voyage
 # PDF
 #
 DocModelCyanCliEnjoyHolidaysDescription = Un modèle de proposition complet pour Formule de Voyage
+
+#
+# Email
+#
+InformationMessage = Bonjour, ceci est un TEST
+ErrorGettingContact = Erreur en tentant de récupérer les contacts liés.
+
+#
+# Cron
+#
+CronDelete = Supprimer les formules de voyage non validées de plus de 3 semaines
+CronDeleteFormuleDeVoyage = Formule(s) de voyage supprimée(s) :
+CronErrorFetchingFormulesDeVoyage = Erreur en essayant de récupérer la liste des formules de voyage.
+CronErrorUserUnallowed = Erreur, utilisateur non autorisé à utiliser cette tâche planifiée.
+CronErrorDeletingObject = Erreur en tentant de supprimer la Formule de Voyage %s
+CronSuccesButNoDeletion = La tâche planifiée a tournée avec succès mais sans supprimer de formule de voyage.
+
+
