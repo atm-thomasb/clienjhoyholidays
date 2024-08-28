@@ -48,7 +48,7 @@ class cron_FormuleDeVoyage extends CommonObject
 	 *
 	 * @return	int			0 if OK, <>0 if KO (this function is used also by cron so only 0 is OK)
 	 */
-	public function deleteOldNotValidatedFormules()
+	public function deleteOldNotValidatedFormules() :int
 	{
 		global $user, $langs;
 
