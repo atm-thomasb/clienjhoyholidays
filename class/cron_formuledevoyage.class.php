@@ -52,40 +52,43 @@ class cron_FormuleDeVoyage extends CommonObject
 	{
 		global $user, $langs;
 
+		$error = 0;
+		$this->output = '';
+		$this->error = '';
+
 		// Check for permissions
 		$permissiontodelete = $user->hasRight('clienjoyholidays', 'formuledevoyage', 'delete');
 		if (empty($permissiontodelete)) {
+			$this->output = $langs->trans("CronErrorUserUnallowed");
 			return 0;
 		}
 
 		require_once __DIR__.'/formuledevoyage.class.php';
 
 		$object = new FormuleDeVoyage($this->db);
-		$error = 0;
-		$this->output = '';
-		$this->error = '';
+
 
 		dol_syslog(__METHOD__." start", LOG_INFO);
-
-		$now = dol_now();
 
 		$this->db->begin();
 
 		$formulesDeleted = "";
-		$result = $object->fetchAll('', '',0, 0, ["customsql" => "DATEDIFF(NOW(), t.date_creation) > 21"]);
-		if ($result < 0){
+		$Tformules = $object->fetchAll('', '',0, 0, ["customsql" => "DATEDIFF(NOW(), t.date_creation) > 21 AND status != ".FormuleDeVoyage::STATUS_VALIDATED]);
+		if ($Tformules < 0){
 			$error = 1;
 			dol_syslog(get_class($this)."::deleteOldNotValidatedFormules ".$object->error, LOG_ERR);
-			$this->output = ($langs->trans("ErrorFetchingFormulesDeVoyage"));
+			$this->output = ($langs->trans("CronErrorFetchingFormulesDeVoyage"));
 		} else {
-			foreach($result as $obj){
-				if ($obj->status != FormuleDeVoyage::STATUS_VALIDATED ) {
-					$obj->delete($user);
-					$formulesDeleted .= $obj->ref.", ";
+			foreach($Tformules as $obj){
+				if ($obj->delete($user) < 0){
+					$error = 1;
+					dol_syslog(get_class($this)."::deleteOldNotValidatedFormules ".$object->error, LOG_ERR);
+					$this->output = ($langs->trans("CronErrorDeletingObject", $object->ref));
 				}
+				$formulesDeleted .= $obj->ref.", ";
 			}
 
-			if ($formulesDeleted != ""){
+			if (!empty($formulesDeleted)){
 				$formulesDeleted = substr_replace($formulesDeleted, ".",-2);
 				$this->output = ($langs->trans("CronDeleteFormuleDeVoyage")).$formulesDeleted;
 			} else {
